@@ -882,6 +882,18 @@
       </div>
     </div>
 
+    <div class="drunkometer">
+      <h3>Sugar Rush-O-Meter™</h3>
+      <div class="dom-bar" id="kidsSugarBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Barely Sweet</span><span>Circus Mode</span><span>God Help You</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="kidsSugarEmoji">😐</div>
+        <div class="dom-text" id="kidsSugarMeterText"></div>
+      </div>
+    </div>
+
     <div class="section">
       <h3>Ingredients</h3>
       <ul class="ing-list" id="kidsIngredients"></ul>
@@ -939,6 +951,18 @@
       </div>
     </div>
 
+    <div class="drunkometer">
+      <h3>Sugar Rush-O-Meter™</h3>
+      <div class="dom-bar" id="redSugarBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Barely Sweet</span><span>Circus Mode</span><span>God Help You</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="redSugarEmoji">😐</div>
+        <div class="dom-text" id="redSugarMeterText"></div>
+      </div>
+    </div>
+
     <div class="section">
       <h3>Ingredients</h3>
       <ul class="ing-list" id="redIngredients"></ul>
@@ -974,6 +998,22 @@
 </div>
 
 <script>
+const SUGAR_LEVELS = [
+  { max: 5,  segs: 1, emoji: "😐", title: "Basically Water", text: "Mom's going to ask why they aren't finishing it." },
+  { max: 8,  segs: 2, emoji: "🍬", title: "Snack Energy", text: "They'll be fine. Probably. Watch them just in case." },
+  { max: 11, segs: 3, emoji: "🎪", title: "Circus Mode", text: "Someone's getting a timeout tonight and it's not you. Maybe." },
+  { max: 14, segs: 4, emoji: "🚀", title: "Wall Climbing", text: "They have found the ceiling. They are ON the ceiling. Good luck." },
+  { max: 25, segs: 5, emoji: "💥", title: "God Help You", text: "This is not your problem anymore. This is their teacher's problem." },
+];
+
+function updateSugarMeter(prefix, sugarPct) {
+  const level = SUGAR_LEVELS.find(l => sugarPct <= l.max) || SUGAR_LEVELS[SUGAR_LEVELS.length - 1];
+  const segs = document.querySelectorAll(`#${prefix}SugarBar .dom-seg`);
+  segs.forEach((s, i) => s.classList.toggle('lit', i < level.segs));
+  document.getElementById(`${prefix}SugarEmoji`).textContent = level.emoji;
+  document.getElementById(`${prefix}SugarMeterText`).innerHTML = `<b>${level.title}</b> — ${level.text}`;
+}
+
 const DOM_LEVELS = [
   { max: 5,  segs: 1, emoji: "🧃", title: "Basically Juice", text: "You drove here. You can drive home. You're fine. Totally fine." },
   { max: 7,  segs: 2, emoji: "😏", title: "Feeling Yourself", text: "You just told a stranger their haircut looks great. You meant it." },
@@ -1191,6 +1231,7 @@ function renderKids(batch) {
     statusEl.textContent = 'well above floor'; statusEl.className = 'gstatus ok';
     document.getElementById('kidsSugarFill').style.background = '#3DDC97';
   }
+  updateSugarMeter('kids', sugarPct);
 }
 
 document.getElementById('kidsBatch').addEventListener('input', (e) => {
@@ -1242,6 +1283,7 @@ function renderRed(batch) {
     statusEl.textContent = 'well above floor'; statusEl.className = 'gstatus ok';
     document.getElementById('redSugarFill').style.background = '#FF5470';
   }
+  updateSugarMeter('red', sugarPct);
 }
 
 document.getElementById('redBatch').addEventListener('input', (e) => {
