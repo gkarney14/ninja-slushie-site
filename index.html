@@ -1216,9 +1216,9 @@ function renderKids(batch) {
   const sugarPct = (totalSugarUnits / batch) * 100;
   document.getElementById('kidsSugarNum').textContent = fmt(sugarPct, 1) + '%';
 
-  const fillPct = Math.min((sugarPct / 20) * 100, 100);
+  const fillPct = Math.min((sugarPct / 30) * 100, 100);
   document.getElementById('kidsSugarFill').style.width = fillPct + '%';
-  document.getElementById('kidsSugarMinMark').style.left = ((4 / 20) * 100) + '%';
+  document.getElementById('kidsSugarMinMark').style.left = ((4 / 30) * 100) + '%';
 
   const statusEl = document.getElementById('kidsSugarStatus');
   if (sugarPct < 4) {
@@ -1268,9 +1268,9 @@ function renderRed(batch) {
   const sugarPct = (totalSugarUnits / batch) * 100;
   document.getElementById('redSugarNum').textContent = fmt(sugarPct, 1) + '%';
 
-  const fillPct = Math.min((sugarPct / 20) * 100, 100);
+  const fillPct = Math.min((sugarPct / 30) * 100, 100);
   document.getElementById('redSugarFill').style.width = fillPct + '%';
-  document.getElementById('redSugarMinMark').style.left = ((4 / 20) * 100) + '%';
+  document.getElementById('redSugarMinMark').style.left = ((4 / 30) * 100) + '%';
 
   const statusEl = document.getElementById('redSugarStatus');
   if (sugarPct < 4) {
