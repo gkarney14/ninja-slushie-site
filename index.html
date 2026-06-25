@@ -1208,20 +1208,13 @@ function renderKids(batch) {
   const sugarPct = (totalSugarUnits / batch) * 100;
   document.getElementById('kidsSugarNum').textContent = fmt(sugarPct, 1) + '%';
 
-  const fillPct = Math.min((sugarPct / 30) * 100, 100);
-  document.getElementById('kidsSugarFill').style.width = fillPct + '%';
-  document.getElementById('kidsSugarMinMark').style.left = ((4 / 30) * 100) + '%';
-
   const statusEl = document.getElementById('kidsSugarStatus');
   if (sugarPct < 4) {
     statusEl.textContent = 'below floor'; statusEl.className = 'gstatus bad';
-    document.getElementById('kidsSugarFill').style.background = '#E2483D';
   } else if (sugarPct < 7) {
     statusEl.textContent = 'near floor'; statusEl.className = 'gstatus warn';
-    document.getElementById('kidsSugarFill').style.background = '#FF8A3D';
   } else {
     statusEl.textContent = 'well above floor'; statusEl.className = 'gstatus ok';
-    document.getElementById('kidsSugarFill').style.background = '#3DDC97';
   }
   updateSugarMeter('kids', sugarPct);
 }
@@ -1260,20 +1253,13 @@ function renderRed(batch) {
   const sugarPct = (totalSugarUnits / batch) * 100;
   document.getElementById('redSugarNum').textContent = fmt(sugarPct, 1) + '%';
 
-  const fillPct = Math.min((sugarPct / 30) * 100, 100);
-  document.getElementById('redSugarFill').style.width = fillPct + '%';
-  document.getElementById('redSugarMinMark').style.left = ((4 / 30) * 100) + '%';
-
   const statusEl = document.getElementById('redSugarStatus');
   if (sugarPct < 4) {
     statusEl.textContent = 'below floor'; statusEl.className = 'gstatus bad';
-    document.getElementById('redSugarFill').style.background = '#E2483D';
   } else if (sugarPct < 7) {
     statusEl.textContent = 'near floor'; statusEl.className = 'gstatus warn';
-    document.getElementById('redSugarFill').style.background = '#FF8A3D';
   } else {
     statusEl.textContent = 'well above floor'; statusEl.className = 'gstatus ok';
-    document.getElementById('redSugarFill').style.background = '#FF5470';
   }
   updateSugarMeter('red', sugarPct);
 }
