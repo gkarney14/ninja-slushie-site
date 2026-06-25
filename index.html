@@ -465,6 +465,78 @@
 
   .card[data-mode="margarita"] input[type="range"] { accent-color: var(--margarita); }
 
+  /* ---------- DRUNK-O-METER ---------- */
+  .drunkometer {
+    padding: 20px 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  .drunkometer h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    margin: 0 0 14px;
+  }
+
+  .dom-bar {
+    display: flex;
+    gap: 3px;
+    height: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .dom-seg {
+    flex: 1;
+    border-radius: 3px;
+    transition: opacity 0.25s;
+    opacity: 0.22;
+  }
+
+  .dom-seg.lit { opacity: 1; }
+
+  .dom-seg:nth-child(1) { background: #3DDC97; }
+  .dom-seg:nth-child(2) { background: #8DE83A; }
+  .dom-seg:nth-child(3) { background: #FFD234; }
+  .dom-seg:nth-child(4) { background: #FF8A3D; }
+  .dom-seg:nth-child(5) { background: #FF5470; }
+
+  .dom-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .dom-verdict {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .dom-emoji {
+    font-size: 26px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .dom-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .dom-text b { color: var(--text); font-weight: 600; }
+
   /* ---------- SITE FOOTER ---------- */
   .site-footer {
     max-width: 980px;
@@ -597,6 +669,18 @@
       </div>
     </div>
 
+    <div class="drunkometer">
+      <h3>Drunk-O-Meter™</h3>
+      <div class="dom-bar" id="rumDomBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Basically Juice</span><span>Spicy</span><span>Send Help</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="rumDomEmoji">🧃</div>
+        <div class="dom-text" id="rumDomText"></div>
+      </div>
+    </div>
+
     <div class="section">
       <h3>Ingredients</h3>
       <ul class="ing-list" id="rumIngredients"></ul>
@@ -653,6 +737,18 @@
         <div class="gnum" id="hurAbvNum">11.1%</div>
         <div class="glabel">Final ABV — safe window 2.8%–16%</div>
         <span class="gstatus ok" id="hurAbvStatus">within range</span>
+      </div>
+    </div>
+
+    <div class="drunkometer">
+      <h3>Drunk-O-Meter™</h3>
+      <div class="dom-bar" id="hurDomBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Basically Juice</span><span>Spicy</span><span>Send Help</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="hurDomEmoji">🧃</div>
+        <div class="dom-text" id="hurDomText"></div>
       </div>
     </div>
 
@@ -713,6 +809,18 @@
         <div class="gnum" id="marAbvNum">11.1%</div>
         <div class="glabel">Final ABV — safe window 2.8%–16%</div>
         <span class="gstatus ok" id="marAbvStatus">within range</span>
+      </div>
+    </div>
+
+    <div class="drunkometer">
+      <h3>Drunk-O-Meter™</h3>
+      <div class="dom-bar" id="marDomBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Basically Juice</span><span>Spicy</span><span>Send Help</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="marDomEmoji">🧃</div>
+        <div class="dom-text" id="marDomText"></div>
       </div>
     </div>
 
@@ -866,6 +974,22 @@
 </div>
 
 <script>
+const DOM_LEVELS = [
+  { max: 5,  segs: 1, emoji: "🧃", title: "Basically Juice", text: "You drove here. You can drive home. You're fine. Totally fine." },
+  { max: 7,  segs: 2, emoji: "😏", title: "Feeling Yourself", text: "You just told a stranger their haircut looks great. You meant it." },
+  { max: 9,  segs: 3, emoji: "🕺", title: "Dance Floor Threat", text: "You have opinions about the playlist and you're sharing them. Loudly." },
+  { max: 12, segs: 4, emoji: "🤙", title: "Texting Exes", text: "Your thumbs are moving faster than your brain. This is fine. This is fine." },
+  { max: 16, segs: 5, emoji: "🚑", title: "Someone's Problem", text: "You don't know whose problem. But definitely someone's. Book the Uber now." },
+];
+
+function updateDrunkometer(prefix, abv) {
+  const level = DOM_LEVELS.find(l => abv <= l.max) || DOM_LEVELS[DOM_LEVELS.length - 1];
+  const segs = document.querySelectorAll(`#${prefix}DomBar .dom-seg`);
+  segs.forEach((s, i) => s.classList.toggle('lit', i < level.segs));
+  document.getElementById(`${prefix}DomEmoji`).textContent = level.emoji;
+  document.getElementById(`${prefix}DomText`).innerHTML = `<b>${level.title}</b> — ${level.text}`;
+}
+
 function fmt(n, d) {
   return (Math.round(n * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d);
 }
@@ -911,6 +1035,7 @@ function renderRum(batch) {
     statusEl.textContent = 'within range'; statusEl.className = 'gstatus ok';
     arc.setAttribute('stroke', '#3DDC97');
   }
+  updateDrunkometer('rum', finalABV);
 }
 
 document.getElementById('rumBatch').addEventListener('input', (e) => {
@@ -964,6 +1089,7 @@ function renderHur(batch) {
     statusEl.textContent = 'within range'; statusEl.className = 'gstatus ok';
     arc.setAttribute('stroke', '#3DDC97');
   }
+  updateDrunkometer('hur', finalABV);
 }
 
 document.getElementById('hurBatch').addEventListener('input', (e) => {
@@ -1014,6 +1140,7 @@ function renderMar(batch) {
     statusEl.textContent = 'within range'; statusEl.className = 'gstatus ok';
     arc.setAttribute('stroke', '#C8E62B');
   }
+  updateDrunkometer('mar', finalABV);
 }
 
 document.getElementById('marBatch').addEventListener('input', (e) => {
