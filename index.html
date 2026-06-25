@@ -18,6 +18,7 @@
     --kids: #3DDC97;
     --red: #FF5470;
     --margarita: #C8E62B;
+    --painkiller: #FFB830;
     --danger: #E2483D;
     --line: #2A3A3D;
   }
@@ -155,6 +156,7 @@
   .dash-row[data-accent="kids"] .dash-tag { color: var(--kids); }
   .dash-row[data-accent="red"] .dash-tag { color: var(--red); }
   .dash-row[data-accent="margarita"] .dash-tag { color: var(--margarita); }
+  .dash-row[data-accent="painkiller"] .dash-tag { color: var(--painkiller); }
 
   .dash-name {
     font-family: 'Space Grotesk', sans-serif;
@@ -193,6 +195,7 @@
   .dash-row[data-accent="kids"] .mfill { background: var(--kids); }
   .dash-row[data-accent="red"] .mfill { background: var(--red); }
   .dash-row[data-accent="margarita"] .mfill { background: var(--margarita); }
+  .dash-row[data-accent="painkiller"] .mfill { background: var(--painkiller); }
 
   .dash-arrow {
     font-family: 'IBM Plex Mono', monospace;
@@ -225,6 +228,7 @@
   .card[data-mode="kids"] .card-head { background: linear-gradient(180deg, rgba(61,220,151,0.10), transparent); }
   .card[data-mode="red"] .card-head { background: linear-gradient(180deg, rgba(255,84,112,0.10), transparent); }
   .card[data-mode="margarita"] .card-head { background: linear-gradient(180deg, rgba(200,230,43,0.10), transparent); }
+  .card[data-mode="painkiller"] .card-head { background: linear-gradient(180deg, rgba(255,184,48,0.10), transparent); }
 
   .tag {
     display: inline-flex;
@@ -243,6 +247,7 @@
   .card[data-mode="kids"] .tag { background: rgba(61,220,151,0.15); color: var(--kids); }
   .card[data-mode="red"] .tag { background: rgba(255,84,112,0.15); color: var(--red); }
   .card[data-mode="margarita"] .tag { background: rgba(200,230,43,0.15); color: var(--margarita); }
+  .card[data-mode="painkiller"] .tag { background: rgba(255,184,48,0.15); color: var(--painkiller); }
 
   .card-head h2 {
     font-family: 'Space Grotesk', sans-serif;
@@ -407,6 +412,7 @@
   .card[data-mode="kids"] .ing-amt { color: var(--kids); }
   .card[data-mode="red"] .ing-amt { color: var(--red); }
   .card[data-mode="margarita"] .ing-amt { color: var(--margarita); }
+  .card[data-mode="painkiller"] .ing-amt { color: var(--painkiller); }
 
   .steps {
     list-style: none; margin: 0; padding: 0;
@@ -435,6 +441,7 @@
   .card[data-mode="kids"] .steps li::before { background: rgba(61,220,151,0.15); color: var(--kids); }
   .card[data-mode="red"] .steps li::before { background: rgba(255,84,112,0.15); color: var(--red); }
   .card[data-mode="margarita"] .steps li::before { background: rgba(200,230,43,0.15); color: var(--margarita); }
+  .card[data-mode="painkiller"] .steps li::before { background: rgba(255,184,48,0.15); color: var(--painkiller); }
 
   .steps li b { color: var(--text); font-weight: 600; }
 
@@ -462,8 +469,10 @@
   .card[data-mode="kids"] .footer-flag { background: rgba(61,220,151,0.08); color: var(--kids); }
   .card[data-mode="red"] .footer-flag { background: rgba(255,84,112,0.08); color: var(--red); }
   .card[data-mode="margarita"] .footer-flag { background: rgba(200,230,43,0.08); color: var(--margarita); }
+  .card[data-mode="painkiller"] .footer-flag { background: rgba(255,184,48,0.08); color: var(--painkiller); }
 
   .card[data-mode="margarita"] input[type="range"] { accent-color: var(--margarita); }
+  .card[data-mode="painkiller"] input[type="range"] { accent-color: var(--painkiller); }
 
   /* ---------- DRUNK-O-METER ---------- */
   .drunkometer {
@@ -567,6 +576,7 @@
     <a href="#rum">Rum</a>
     <a href="#hurricane">Hurricane</a>
     <a href="#margarita">Margarita</a>
+    <a href="#painkiller">Painkiller</a>
     <a href="#pina-colada">Piña Colada</a>
     <a href="#red">Red Slushie</a>
   </nav>
@@ -574,7 +584,7 @@
 
 <div class="hero">
   <div class="eyebrow">Recipe instruments · slushi machine</div>
-  <h1>Five batches. Built like formulas, not just lists.</h1>
+  <h1>Six batches. Built like formulas, not just lists.</h1>
   <p>Every recipe scales by batch size, with the actual constraint — ABV or sugar floor — tracked live. Tap a row to jump to the full card.</p>
 </div>
 
@@ -611,6 +621,18 @@
     <div class="dash-metric">
       <span class="mnum">11.1% ABV</span>
       <div class="mtrack"><div class="mfill" style="width: 69%;"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+
+  <a class="dash-row" data-accent="painkiller" href="#painkiller">
+    <div class="dash-name-block">
+      <span class="dash-tag">21+ · spiked slush</span>
+      <span class="dash-name">Painkiller — Soggy Dollar</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">8.9% ABV</span>
+      <div class="mtrack"><div class="mfill" style="width: 56%;"></div></div>
     </div>
     <span class="dash-arrow">→</span>
   </a>
@@ -852,6 +874,79 @@
     </div>
 
     <div class="footer-flag">⚠ Scaling preserves ABV automatically — ratios are fixed, not the slider. Always re-taste after rescaling. At 72 oz you're at max fill; reduce batch size if your vessel is smaller.</div>
+  </div>
+</div>
+
+<!-- ============ PAINKILLER CARD ============ -->
+<div class="recipe-section" id="painkiller">
+  <div class="card" data-mode="painkiller">
+    <div class="card-head">
+      <span class="tag">21+ · spiked slush</span>
+      <h2>Painkiller — Soggy Dollar</h2>
+      <p class="sub">The original. Soggy Dollar Bar in the BVI invented this drink — cream of coconut, pineapple, orange, rum. SPIKED SLUSH preset.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="pkBatch">Batch size</label>
+      <input type="range" id="pkBatch" min="36" max="72" step="1" value="72">
+      <span class="batch-readout"><span id="pkBatchVal">72</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="gauge-wrap">
+        <svg width="100" height="64" viewBox="0 0 100 64">
+          <path d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#2A3A3D" stroke-width="8" stroke-linecap="round"/>
+          <path id="pkAbvArc" d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#FFB830" stroke-width="8" stroke-linecap="round" stroke-dasharray="132 132" stroke-dashoffset="0"/>
+        </svg>
+      </div>
+      <div class="gauge-readout">
+        <div class="gnum" id="pkAbvNum">8.9%</div>
+        <div class="glabel">Final ABV — safe window 2.8%–16%</div>
+        <span class="gstatus ok" id="pkAbvStatus">within range</span>
+      </div>
+    </div>
+
+    <div class="drunkometer">
+      <h3>Drunk-O-Meter™</h3>
+      <div class="dom-bar" id="pkDomBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Basically Juice</span><span>Spicy</span><span>Send Help</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="pkDomEmoji">🧃</div>
+        <div class="dom-text" id="pkDomText"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="pkIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Mix and whisk.</b> Combine all liquids in a large pitcher. Whisk thoroughly — cream of coconut is dense and will sink if not fully incorporated. Total volume = 72 oz.</li>
+        <li><b>Chill the base.</b> Refrigerate at least 30 minutes. Whisk again right before loading.</li>
+        <li><b>Load the machine.</b> Whisk one more time, then pour through the easy-fill port to the max fill line. Lock bail handle, confirm vessel is sealed.</li>
+        <li><b>Select SPIKED SLUSH.</b> Power on, select SPIKED SLUSH.</li>
+        <li><b>Run cycle.</b> Typical 15–60 min. Check at 30 minutes — cream of coconut can thicken texture faster than expected.</li>
+        <li><b>Serve.</b> Remove cup lid before dispensing. Grate fresh nutmeg over each glass immediately before serving.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Authenticity:</b> Soggy Dollar Bar in the BVI is the actual birthplace of the Painkiller — this is as close to the original as you'll get outside the bar itself.</li>
+        <li><b>Cream of coconut handles sugar:</b> clears the 4% minimum with margin, no added syrup needed.</li>
+        <li><b>Don't skip the nutmeg:</b> signature finish — grate fresh over each glass right before serving, not before.</li>
+        <li><b>Whisk before loading:</b> cream of coconut separates. Whisk thoroughly right before pouring into the fill port.</li>
+        <li><b>Want it stronger?</b> Push rum to 18–20 oz without tripping the high-alcohol sensor — still well within the 16% ceiling.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ Cream of coconut is thicker than juice — whisk immediately before loading or it will settle and affect freeze behavior.</div>
   </div>
 </div>
 
@@ -1181,6 +1276,60 @@ document.getElementById('marBatch').addEventListener('input', (e) => {
   renderMar(v);
 });
 renderMar(72);
+
+// ---- PAINKILLER CARD ----
+const pkBase = 72;
+const pkIngredientsBase = [
+  { name: "Soggy Dollar rum (40% ABV)", amt: 16, unit: "fl oz", abv: 0.40 },
+  { name: "Pineapple juice", amt: 28, unit: "fl oz", abv: 0 },
+  { name: "Cream of coconut (Coco López)", amt: 12, unit: "fl oz", abv: 0 },
+  { name: "Orange juice", amt: 8, unit: "fl oz", abv: 0 },
+  { name: "Cold water", amt: 8, unit: "fl oz", abv: 0 },
+];
+
+function renderPK(batch) {
+  const scale = batch / pkBase;
+  const list = document.getElementById('pkIngredients');
+  list.innerHTML = '';
+  let totalAlcohol = 0;
+  pkIngredientsBase.forEach(ing => {
+    const scaled = ing.amt * scale;
+    totalAlcohol += scaled * ing.abv;
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="ing-name">${ing.name}</span><span class="ing-amt">${fmt(scaled, 1)} ${ing.unit}</span>`;
+    list.appendChild(li);
+  });
+  const li = document.createElement('li');
+  li.innerHTML = `<span class="ing-name">Fresh nutmeg (garnish)</span><span class="ing-amt">for serving</span>`;
+  list.appendChild(li);
+
+  const finalABV = (totalAlcohol / batch) * 100;
+  document.getElementById('pkAbvNum').textContent = fmt(finalABV, 1) + '%';
+
+  const arc = document.getElementById('pkAbvArc');
+  const pct = Math.min(Math.max(finalABV / 16, 0), 1);
+  arc.setAttribute('stroke-dashoffset', 132 * (1 - pct));
+
+  const statusEl = document.getElementById('pkAbvStatus');
+  if (finalABV < 2.8) {
+    statusEl.textContent = 'below minimum'; statusEl.className = 'gstatus warn';
+    arc.setAttribute('stroke', '#FF8A3D');
+  } else if (finalABV > 16) {
+    statusEl.textContent = 'over limit'; statusEl.className = 'gstatus bad';
+    arc.setAttribute('stroke', '#E2483D');
+  } else {
+    statusEl.textContent = 'within range'; statusEl.className = 'gstatus ok';
+    arc.setAttribute('stroke', '#FFB830');
+  }
+  updateDrunkometer('pk', finalABV);
+}
+
+document.getElementById('pkBatch').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value);
+  document.getElementById('pkBatchVal').textContent = v;
+  renderPK(v);
+});
+renderPK(72);
 
 // ---- KIDS PINA COLADA CARD ----
 const kidsBase = 72;
