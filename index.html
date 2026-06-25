@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ninja Slushi Recipes</title>
+<meta name="description" content="Scalable slushi machine recipes — rum, hurricane, and kids' cards with live ABV and sugar-floor readouts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1B1E;
+    --panel: #162427;
+    --panel-2: #1C2D30;
+    --text: #F4EFE3;
+    --text-dim: #8A9A98;
+    --rum: #FF8A3D;
+    --kids: #3DDC97;
+    --red: #FF5470;
+    --danger: #E2483D;
+    --line: #2A3A3D;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(15,27,30,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .brand .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--kids);
+    box-shadow: 0 0 8px var(--kids);
+  }
+
+  .topnav {
+    display: flex;
+    gap: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .topnav a { color: var(--text-dim); transition: color 0.15s; }
+  .topnav a:hover { color: var(--text); }
+
+  /* ---------- HERO / INDEX PANEL ---------- */
+  .hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 56px 24px 32px;
+  }
+
+  .hero .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 48px);
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    line-height: 1.05;
+  }
+
+  .hero p {
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0;
+  }
+
+  /* ---------- DASHBOARD LIST ---------- */
+  .dashboard {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .dash-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 20px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    transition: border-color 0.15s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .dash-row:hover {
+    border-color: var(--text-dim);
+    transform: translateX(2px);
+  }
+
+  .dash-row + .dash-row { margin-top: 10px; }
+
+  .dash-name-block { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+
+  .dash-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .dash-row[data-accent="rum"] .dash-tag { color: var(--rum); }
+  .dash-row[data-accent="kids"] .dash-tag { color: var(--kids); }
+  .dash-row[data-accent="red"] .dash-tag { color: var(--red); }
+
+  .dash-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .dash-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    min-width: 140px;
+  }
+
+  .dash-metric .mnum {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  .dash-metric .mtrack {
+    width: 120px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--panel-2);
+    overflow: hidden;
+  }
+
+  .dash-metric .mfill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .dash-row[data-accent="rum"] .mfill { background: var(--rum); }
+  .dash-row[data-accent="kids"] .mfill { background: var(--kids); }
+  .dash-row[data-accent="red"] .mfill { background: var(--red); }
+
+  .dash-arrow {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-dim);
+    font-size: 18px;
+  }
+
+  /* ---------- SECTION CARD (reused recipe-card markup) ---------- */
+  .recipe-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 24px 24px;
+    scroll-margin-top: 70px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-head {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card[data-mode="rum"] .card-head { background: linear-gradient(180deg, rgba(255,138,61,0.10), transparent); }
+  .card[data-mode="kids"] .card-head { background: linear-gradient(180deg, rgba(61,220,151,0.10), transparent); }
+  .card[data-mode="red"] .card-head { background: linear-gradient(180deg, rgba(255,84,112,0.10), transparent); }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+
+  .card[data-mode="rum"] .tag { background: rgba(255,138,61,0.15); color: var(--rum); }
+  .card[data-mode="kids"] .tag { background: rgba(61,220,151,0.15); color: var(--kids); }
+  .card[data-mode="red"] .tag { background: rgba(255,84,112,0.15); color: var(--red); }
+
+  .card-head h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .card-head .sub {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 560px;
+  }
+
+  .scale-row {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .scale-row label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--line);
+    outline: none;
+  }
+
+  .card[data-mode="rum"] input[type="range"] { accent-color: var(--rum); }
+  .card[data-mode="kids"] input[type="range"] { accent-color: var(--kids); }
+  .card[data-mode="red"] input[type="range"] { accent-color: var(--red); }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--text);
+    cursor: pointer;
+    border: 3px solid var(--bg);
+  }
+
+  .batch-readout {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 15px;
+    min-width: 78px;
+    text-align: right;
+  }
+
+  .gauge-row {
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .gauge-wrap { flex-shrink: 0; }
+  .gauge-readout { flex: 1; }
+
+  .gauge-readout .gnum {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .gauge-readout .glabel {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .gauge-readout .gstatus {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 100px;
+  }
+
+  .ok { background: rgba(61,220,151,0.15); color: var(--kids); }
+  .warn { background: rgba(255,138,61,0.18); color: var(--rum); }
+  .bad { background: rgba(226,72,61,0.18); color: var(--danger); }
+
+  .sugar-bar-track {
+    flex: 1;
+    height: 10px;
+    border-radius: 6px;
+    background: var(--panel-2);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .sugar-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.2s;
+  }
+
+  .sugar-bar-min {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    width: 2px;
+    background: var(--text-dim);
+  }
+
+  .section { padding: 22px 28px; }
+  .section + .section { border-top: 1px solid var(--line); }
+
+  .section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    margin: 0 0 14px;
+  }
+
+  .ing-list {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+
+  .ing-list li {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; font-size: 14.5px;
+  }
+
+  .ing-name { color: var(--text); }
+  .ing-amt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--text);
+  }
+
+  .card[data-mode="rum"] .ing-amt { color: var(--rum); }
+  .card[data-mode="kids"] .ing-amt { color: var(--kids); }
+  .card[data-mode="red"] .ing-amt { color: var(--red); }
+
+  .steps {
+    list-style: none; margin: 0; padding: 0;
+    counter-reset: step;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+
+  .steps li {
+    counter-increment: step;
+    display: flex; gap: 12px;
+    font-size: 14px; line-height: 1.55;
+    color: var(--text-dim);
+  }
+
+  .steps li::before {
+    content: counter(step);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600; font-size: 12px;
+    flex-shrink: 0; width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+
+  .card[data-mode="rum"] .steps li::before { background: rgba(255,138,61,0.15); color: var(--rum); }
+  .card[data-mode="kids"] .steps li::before { background: rgba(61,220,151,0.15); color: var(--kids); }
+  .card[data-mode="red"] .steps li::before { background: rgba(255,84,112,0.15); color: var(--red); }
+
+  .steps li b { color: var(--text); font-weight: 600; }
+
+  .notes-list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+
+  .notes-list li {
+    font-size: 13.5px; line-height: 1.55; color: var(--text-dim);
+    padding-left: 14px;
+    border-left: 2px solid var(--line);
+  }
+
+  .notes-list li b { color: var(--text); }
+
+  .footer-flag {
+    padding: 16px 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; line-height: 1.6;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+
+  .card[data-mode="rum"] .footer-flag { background: rgba(255,138,61,0.08); color: var(--rum); }
+  .card[data-mode="kids"] .footer-flag { background: rgba(61,220,151,0.08); color: var(--kids); }
+  .card[data-mode="red"] .footer-flag { background: rgba(255,84,112,0.08); color: var(--red); }
+
+  /* ---------- SITE FOOTER ---------- */
+  .site-footer {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    border-top: 1px solid var(--line);
+    margin-top: 24px;
+  }
+
+  @media (max-width: 640px) {
+    .gauge-row { flex-direction: column; align-items: stretch; }
+    .gauge-wrap { align-self: center; }
+    .dash-row { grid-template-columns: 1fr; gap: 12px; }
+    .dash-metric { align-items: flex-start; }
+    .dash-arrow { display: none; }
+    .topnav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span> NINJA SLUSHI RECIPES</div>
+  <nav class="topnav">
+    <a href="#rum">Rum</a>
+    <a href="#hurricane">Hurricane</a>
+    <a href="#pina-colada">Piña Colada</a>
+    <a href="#red">Red Slushie</a>
+  </nav>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">Recipe instruments · slushi machine</div>
+  <h1>Four batches. Built like formulas, not just lists.</h1>
+  <p>Every recipe scales by batch size, with the actual constraint — ABV or sugar floor — tracked live. Tap a row to jump to the full card.</p>
+</div>
+
+<div class="dashboard">
+  <a class="dash-row" data-accent="rum" href="#rum">
+    <div class="dash-name-block">
+      <span class="dash-tag">21+ · spiked slush</span>
+      <span class="dash-name">Coconut-Lime Rum</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">7.0% ABV</span>
+      <div class="mtrack"><div class="mfill" style="width: 44%;"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+
+  <a class="dash-row" data-accent="rum" href="#hurricane">
+    <div class="dash-name-block">
+      <span class="dash-tag">21+ · spiked slush</span>
+      <span class="dash-name">Hurricane</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">11.1% ABV</span>
+      <div class="mtrack"><div class="mfill" style="width: 69%;"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+
+  <a class="dash-row" data-accent="kids" href="#pina-colada">
+    <div class="dash-name-block">
+      <span class="dash-tag">Alcohol-free · slush</span>
+      <span class="dash-name">Piña Colada — Kids</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">12.4% sugar</span>
+      <div class="mtrack"><div class="mfill" style="width: 62%; background: var(--kids);"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+
+  <a class="dash-row" data-accent="red" href="#red">
+    <div class="dash-name-block">
+      <span class="dash-tag">Alcohol-free · slush</span>
+      <span class="dash-name">Red Slushie — Kids</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">10.0% sugar</span>
+      <div class="mtrack"><div class="mfill" style="width: 50%; background: var(--red);"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+</div>
+
+<!-- ============ RUM CARD ============ -->
+<div class="recipe-section" id="rum">
+  <div class="card" data-mode="rum">
+    <div class="card-head">
+      <span class="tag">21+ · spiked slush</span>
+      <h2>Coconut-Lime Rum</h2>
+      <p class="sub">Malibu-based. Lower ABV than tequila builds, so it has more headroom on volume. SPIKED SLUSH preset.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="rumBatch">Batch size</label>
+      <input type="range" id="rumBatch" min="36" max="144" step="1" value="72">
+      <span class="batch-readout"><span id="rumBatchVal">72</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="gauge-wrap">
+        <svg width="100" height="64" viewBox="0 0 100 64">
+          <path d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#2A3A3D" stroke-width="8" stroke-linecap="round"/>
+          <path id="rumAbvArc" d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#3DDC97" stroke-width="8" stroke-linecap="round" stroke-dasharray="132 132" stroke-dashoffset="0"/>
+        </svg>
+      </div>
+      <div class="gauge-readout">
+        <div class="gnum" id="rumAbvNum">7.0%</div>
+        <div class="glabel">Final ABV — safe window 2.8%–16%</div>
+        <span class="gstatus ok" id="rumAbvStatus">within range</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="rumIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Mix and taste.</b> Combine all liquids in a pitcher matched to your scaled volume. Stir well. Taste — tropical, slightly tart, sweeter than your target finished drink. Malibu is already sweet, go easy on adjustments.</li>
+        <li><b>Chill the base.</b> Refrigerate at least 30 minutes before loading — Malibu and pineapple juice both benefit from starting cold.</li>
+        <li><b>Load the machine.</b> Pour to your machine's max fill line. Lock the bail handle, confirm the seal.</li>
+        <li><b>Select SPIKED SLUSH.</b> Lower ABV than tequila builds means this may freeze faster — check around the 30-minute mark.</li>
+        <li><b>Run cycle.</b> Typical cycle 15–45 min. If texture runs thick, press DOWN to drop temperature.</li>
+        <li><b>Serve.</b> Garnish with lime or pineapple. Salted or Tajín rim works well here.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Why this ratio works:</b> Malibu at 21% ABV contributes far less alcohol per ounce than tequila, so the rum fraction can stay generous without pushing past the safe window.</li>
+        <li><b>Sugar floor:</b> pineapple juice clears the 4% minimum easily — you're unlikely to need extra simple syrup.</li>
+        <li><b>Variation:</b> swap lime for passion fruit juice for a more tropical profile, or add 2 oz coconut cream per 72 oz (reduce water 2 oz) for a piña colada direction.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ Scaling preserves ABV automatically — ratios are fixed, not the slider. Always re-taste after rescaling.</div>
+  </div>
+</div>
+
+<!-- ============ HURRICANE CARD ============ -->
+<div class="recipe-section" id="hurricane">
+  <div class="card" data-mode="rum">
+    <div class="card-head">
+      <span class="tag">21+ · spiked slush</span>
+      <h2>Hurricane</h2>
+      <p class="sub">Classic two-rum tiki build — light and dark rum, passion fruit, orange. SPIKED SLUSH preset.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="hurBatch">Batch size</label>
+      <input type="range" id="hurBatch" min="36" max="144" step="1" value="72">
+      <span class="batch-readout"><span id="hurBatchVal">72</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="gauge-wrap">
+        <svg width="100" height="64" viewBox="0 0 100 64">
+          <path d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#2A3A3D" stroke-width="8" stroke-linecap="round"/>
+          <path id="hurAbvArc" d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#3DDC97" stroke-width="8" stroke-linecap="round" stroke-dasharray="132 132" stroke-dashoffset="0"/>
+        </svg>
+      </div>
+      <div class="gauge-readout">
+        <div class="gnum" id="hurAbvNum">11.1%</div>
+        <div class="glabel">Final ABV — safe window 2.8%–16%</div>
+        <span class="gstatus ok" id="hurAbvStatus">within range</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="hurIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Mix and taste.</b> Combine both rums, passion fruit juice, orange juice, lime juice, grenadine, simple syrup, and water in a pitcher. Stir well. Taste — tart-tropical with real depth from the dark rum, sweet but not cloying.</li>
+        <li><b>Chill the base.</b> Refrigerate at least 30 minutes before loading.</li>
+        <li><b>Load the machine.</b> Pour to your scaled max fill line. Lock the bail handle, confirm the seal.</li>
+        <li><b>Select SPIKED SLUSH.</b> At ~11% ABV this sits mid-range in the safe window — check around the 30-minute mark since exact freeze time depends on your machine and starting temperature.</li>
+        <li><b>Run cycle.</b> Typical cycle 15–45 min. If texture runs thick, press DOWN to drop temperature.</li>
+        <li><b>Serve.</b> Garnish with an orange slice and a cherry — the traditional hurricane look.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Why 20 oz total rum works:</b> at 40% ABV combined, 20 oz in 72 oz total lands at 11.1% — clear of both the 2.8% floor and 16% ceiling, with headroom to push stronger.</li>
+        <li><b>Sugar floor:</b> grenadine and simple syrup clear the 4% minimum easily on top of natural juice sugars.</li>
+        <li><b>Dark rum matters:</b> don't substitute a second light rum — dark rum (e.g. Myers's Dark) gives the actual flavor signature and color, not just the grenadine.</li>
+        <li><b>Variation:</b> shift 4 oz from orange juice to passion fruit juice for a more passion-fruit-forward profile — same total volume and ABV.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ Two-rum split (50/50 light/dark) scales together as one ratio — don't adjust independently or you'll shift both flavor and ABV math.</div>
+  </div>
+</div>
+
+<!-- ============ KIDS PINA COLADA CARD ============ -->
+<div class="recipe-section" id="pina-colada">
+  <div class="card" data-mode="kids">
+    <div class="card-head">
+      <span class="tag">Alcohol-free · slush preset</span>
+      <h2>Piña Colada — Kids</h2>
+      <p class="sub">Juice-based. No alcohol means sugar alone has to do the freeze-point work. Use standard SLUSH, not SPIKED SLUSH.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="kidsBatch">Batch size</label>
+      <input type="range" id="kidsBatch" min="36" max="144" step="1" value="72">
+      <span class="batch-readout"><span id="kidsBatchVal">72</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="sugar-bar-track">
+        <div class="sugar-bar-min" id="kidsSugarMinMark" style="left: 33%;"></div>
+        <div class="sugar-bar-fill" id="kidsSugarFill" style="width: 58%; background: var(--kids);"></div>
+      </div>
+      <div class="gauge-readout">
+        <div class="gnum" id="kidsSugarNum">12.4%</div>
+        <div class="glabel">Sugar contribution — floor is ~4%</div>
+        <span class="gstatus ok" id="kidsSugarStatus">well above floor</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="kidsIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Mix and taste.</b> Combine pineapple juice, coconut cream, simple syrup, and water. Stir thoroughly — coconut cream separates and needs real mixing. Taste — sweeter than the rum version, since there's no alcohol bite to balance.</li>
+        <li><b>Chill the base.</b> Refrigerate at least 30 minutes. Coconut cream blends more evenly cold.</li>
+        <li><b>Load the machine.</b> Pour to your scaled max fill line. Lock the bail handle, confirm the seal.</li>
+        <li><b>Select SLUSH</b> — not SPIKED SLUSH. The spiked preset assumes alcohol's freeze-point depression, which isn't present here.</li>
+        <li><b>Run cycle and monitor.</b> Expect a longer cycle than either rum version. Check at 20 min, then every 10. If it ices too hard, add 1–2 oz more simple syrup and re-run.</li>
+        <li><b>Serve.</b> Garnish with a cherry or pineapple wedge. Skip the salted rim.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Why more sugar, not less:</b> alcohol did real freeze-point work in the rum version. Here sugar is the only lever, so the ratio runs higher to get comparable texture.</li>
+        <li><b>Use coconut cream, not milk:</b> milk is too thin and may land below the slush threshold even with extra sugar.</li>
+        <li><b>Texture risk:</b> this batch is most likely to under-perform on texture vs. the alcoholic versions — that's the missing freeze-point depression showing, not an error.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ First run = calibration run. Don't reuse rum-recipe timing — this is a different thermal profile.</div>
+  </div>
+</div>
+
+<!-- ============ RED SLUSHIE CARD ============ -->
+<div class="recipe-section" id="red">
+  <div class="card" data-mode="red">
+    <div class="card-head">
+      <span class="tag">Alcohol-free · slush preset</span>
+      <h2>Red Slushie — Kids</h2>
+      <p class="sub">Cran-apple based. No alcohol, so sugar alone drives freeze behavior. Use standard SLUSH, not SPIKED SLUSH.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="redBatch">Batch size</label>
+      <input type="range" id="redBatch" min="36" max="72" step="1" value="36">
+      <span class="batch-readout"><span id="redBatchVal">36</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="sugar-bar-track">
+        <div class="sugar-bar-min" id="redSugarMinMark" style="left: 20%;"></div>
+        <div class="sugar-bar-fill" id="redSugarFill" style="width: 50%; background: var(--red);"></div>
+      </div>
+      <div class="gauge-readout">
+        <div class="gnum" id="redSugarNum">10.0%</div>
+        <div class="glabel">Sugar contribution — floor is ~4%</div>
+        <span class="gstatus ok" id="redSugarStatus">well above floor</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="redIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Mix and taste.</b> Combine cran-apple, grenadine, simple syrup, lime juice, and water in a pitcher. Stir well. Taste — tart-sweet, cran-apple dominant, grenadine giving a pomegranate edge. Lime should be present but not sour-forward.</li>
+        <li><b>Chill the base.</b> Refrigerate at least 30 minutes before loading.</li>
+        <li><b>Load the machine.</b> Pour to your scaled max fill line. Lock the bail handle, confirm the seal.</li>
+        <li><b>Select SLUSH</b> — not SPIKED SLUSH. No alcohol means no freeze-point depression from that source.</li>
+        <li><b>Run cycle and monitor.</b> Cran-apple is thinner than the piña colada base (no coconut cream body), so this may freeze faster — check at 20 min, then every 10. If too icy, add 1–2 oz simple syrup and re-run.</li>
+        <li><b>Serve.</b> Garnish with a cherry or lime wheel.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Grenadine does double duty:</b> color and sugar. For less sweetness, cut grenadine and add back cran-apple to hold total volume — don't just remove sugar without replacing volume.</li>
+        <li><b>Lime is the balancer, not the lead:</b> it's there to cut sweetness, not headline the flavor. Adjust a half-ounce at a time.</li>
+        <li><b>Color note:</b> cran-apple plus grenadine should give deep red without dye. For brighter "kid red," a few drops of food coloring is the only lever — more grenadine just adds sweetness, not color.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ Thinner base than the piña colada card — don't reuse its timing assumptions. Check your machine's minimum fill line at smaller batch sizes.</div>
+  </div>
+</div>
+
+<div class="site-footer">
+  Ninja Slushi Recipes — built for actual batches, not browsing. Numbers update live as you scale.
+</div>
+
+<script>
+function fmt(n, d) {
+  return (Math.round(n * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d);
+}
+
+// ---- RUM CARD ----
+const rumBase = 72;
+const rumIngredientsBase = [
+  { name: "Malibu coconut rum (21% ABV)", amt: 24, unit: "fl oz" },
+  { name: "Fresh lime juice (~7 limes per 72 oz)", amt: 8, unit: "fl oz" },
+  { name: "Simple syrup", amt: 6, unit: "fl oz" },
+  { name: "Pineapple juice (100%)", amt: 16, unit: "fl oz" },
+  { name: "Cold water", amt: 18, unit: "fl oz" },
+];
+const rumABV = 0.21;
+
+function renderRum(batch) {
+  const scale = batch / rumBase;
+  const list = document.getElementById('rumIngredients');
+  list.innerHTML = '';
+  rumIngredientsBase.forEach(ing => {
+    const scaled = ing.amt * scale;
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="ing-name">${ing.name}</span><span class="ing-amt">${fmt(scaled, 1)} ${ing.unit}</span>`;
+    list.appendChild(li);
+  });
+
+  const rumOz = rumIngredientsBase[0].amt * scale;
+  const finalABV = (rumOz * rumABV / batch) * 100;
+  document.getElementById('rumAbvNum').textContent = fmt(finalABV, 1) + '%';
+
+  const arc = document.getElementById('rumAbvArc');
+  const pct = Math.min(Math.max(finalABV / 16, 0), 1);
+  arc.setAttribute('stroke-dashoffset', 132 * (1 - pct));
+
+  const statusEl = document.getElementById('rumAbvStatus');
+  if (finalABV < 2.8) {
+    statusEl.textContent = 'below minimum'; statusEl.className = 'gstatus warn';
+    arc.setAttribute('stroke', '#FF8A3D');
+  } else if (finalABV > 16) {
+    statusEl.textContent = 'over limit'; statusEl.className = 'gstatus bad';
+    arc.setAttribute('stroke', '#E2483D');
+  } else {
+    statusEl.textContent = 'within range'; statusEl.className = 'gstatus ok';
+    arc.setAttribute('stroke', '#3DDC97');
+  }
+}
+
+document.getElementById('rumBatch').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value);
+  document.getElementById('rumBatchVal').textContent = v;
+  renderRum(v);
+});
+renderRum(72);
+
+// ---- HURRICANE CARD ----
+const hurBase = 72;
+const hurIngredientsBase = [
+  { name: "Light rum (40% ABV)", amt: 10, unit: "fl oz" },
+  { name: "Dark rum (40% ABV)", amt: 10, unit: "fl oz" },
+  { name: "Passion fruit juice", amt: 16, unit: "fl oz" },
+  { name: "Orange juice", amt: 12, unit: "fl oz" },
+  { name: "Fresh lime juice (~5 limes per 72 oz)", amt: 6, unit: "fl oz" },
+  { name: "Grenadine", amt: 6, unit: "fl oz" },
+  { name: "Simple syrup", amt: 4, unit: "fl oz" },
+  { name: "Cold water", amt: 8, unit: "fl oz" },
+];
+const hurABV = 0.40;
+
+function renderHur(batch) {
+  const scale = batch / hurBase;
+  const list = document.getElementById('hurIngredients');
+  list.innerHTML = '';
+  hurIngredientsBase.forEach(ing => {
+    const scaled = ing.amt * scale;
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="ing-name">${ing.name}</span><span class="ing-amt">${fmt(scaled, 1)} ${ing.unit}</span>`;
+    list.appendChild(li);
+  });
+
+  const totalRumOz = (hurIngredientsBase[0].amt + hurIngredientsBase[1].amt) * scale;
+  const finalABV = (totalRumOz * hurABV / batch) * 100;
+  document.getElementById('hurAbvNum').textContent = fmt(finalABV, 1) + '%';
+
+  const arc = document.getElementById('hurAbvArc');
+  const pct = Math.min(Math.max(finalABV / 16, 0), 1);
+  arc.setAttribute('stroke-dashoffset', 132 * (1 - pct));
+
+  const statusEl = document.getElementById('hurAbvStatus');
+  if (finalABV < 2.8) {
+    statusEl.textContent = 'below minimum'; statusEl.className = 'gstatus warn';
+    arc.setAttribute('stroke', '#FF8A3D');
+  } else if (finalABV > 16) {
+    statusEl.textContent = 'over limit'; statusEl.className = 'gstatus bad';
+    arc.setAttribute('stroke', '#E2483D');
+  } else {
+    statusEl.textContent = 'within range'; statusEl.className = 'gstatus ok';
+    arc.setAttribute('stroke', '#3DDC97');
+  }
+}
+
+document.getElementById('hurBatch').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value);
+  document.getElementById('hurBatchVal').textContent = v;
+  renderHur(v);
+});
+renderHur(72);
+
+// ---- KIDS PINA COLADA CARD ----
+const kidsBase = 72;
+const kidsIngredientsBase = [
+  { name: "Pineapple juice (100%)", amt: 40, unit: "fl oz" },
+  { name: "Coconut cream (unsweetened)", amt: 16, unit: "fl oz" },
+  { name: "Simple syrup", amt: 8, unit: "fl oz" },
+  { name: "Cold water", amt: 8, unit: "fl oz" },
+];
+const kidsSugarPerOz = { "Pineapple juice (100%)": 0.13, "Coconut cream (unsweetened)": 0.06, "Simple syrup": 1.0, "Cold water": 0 };
+
+function renderKids(batch) {
+  const scale = batch / kidsBase;
+  const list = document.getElementById('kidsIngredients');
+  list.innerHTML = '';
+  let totalSugarUnits = 0;
+  kidsIngredientsBase.forEach(ing => {
+    const scaled = ing.amt * scale;
+    totalSugarUnits += scaled * kidsSugarPerOz[ing.name];
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="ing-name">${ing.name}</span><span class="ing-amt">${fmt(scaled, 1)} ${ing.unit}</span>`;
+    list.appendChild(li);
+  });
+
+  const sugarPct = (totalSugarUnits / batch) * 100;
+  document.getElementById('kidsSugarNum').textContent = fmt(sugarPct, 1) + '%';
+
+  const fillPct = Math.min((sugarPct / 20) * 100, 100);
+  document.getElementById('kidsSugarFill').style.width = fillPct + '%';
+  document.getElementById('kidsSugarMinMark').style.left = ((4 / 20) * 100) + '%';
+
+  const statusEl = document.getElementById('kidsSugarStatus');
+  if (sugarPct < 4) {
+    statusEl.textContent = 'below floor'; statusEl.className = 'gstatus bad';
+    document.getElementById('kidsSugarFill').style.background = '#E2483D';
+  } else if (sugarPct < 7) {
+    statusEl.textContent = 'near floor'; statusEl.className = 'gstatus warn';
+    document.getElementById('kidsSugarFill').style.background = '#FF8A3D';
+  } else {
+    statusEl.textContent = 'well above floor'; statusEl.className = 'gstatus ok';
+    document.getElementById('kidsSugarFill').style.background = '#3DDC97';
+  }
+}
+
+document.getElementById('kidsBatch').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value);
+  document.getElementById('kidsBatchVal').textContent = v;
+  renderKids(v);
+});
+renderKids(72);
+
+// ---- RED SLUSHIE CARD ----
+const redBase = 36;
+const redIngredientsBase = [
+  { name: "Cran-apple juice", amt: 24, unit: "fl oz" },
+  { name: "Grenadine", amt: 6, unit: "fl oz" },
+  { name: "Simple syrup", amt: 2, unit: "fl oz" },
+  { name: "Fresh lime juice (~2 limes per 36 oz)", amt: 2, unit: "fl oz" },
+  { name: "Cold water", amt: 2, unit: "fl oz" },
+];
+const redSugarPerOz = { "Cran-apple juice": 0.14, "Grenadine": 0.55, "Simple syrup": 1.0, "Fresh lime juice (~2 limes per 36 oz)": 0.02, "Cold water": 0 };
+
+function renderRed(batch) {
+  const scale = batch / redBase;
+  const list = document.getElementById('redIngredients');
+  list.innerHTML = '';
+  let totalSugarUnits = 0;
+  redIngredientsBase.forEach(ing => {
+    const scaled = ing.amt * scale;
+    totalSugarUnits += scaled * redSugarPerOz[ing.name];
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="ing-name">${ing.name}</span><span class="ing-amt">${fmt(scaled, 1)} ${ing.unit}</span>`;
+    list.appendChild(li);
+  });
+
+  const sugarPct = (totalSugarUnits / batch) * 100;
+  document.getElementById('redSugarNum').textContent = fmt(sugarPct, 1) + '%';
+
+  const fillPct = Math.min((sugarPct / 20) * 100, 100);
+  document.getElementById('redSugarFill').style.width = fillPct + '%';
+  document.getElementById('redSugarMinMark').style.left = ((4 / 20) * 100) + '%';
+
+  const statusEl = document.getElementById('redSugarStatus');
+  if (sugarPct < 4) {
+    statusEl.textContent = 'below floor'; statusEl.className = 'gstatus bad';
+    document.getElementById('redSugarFill').style.background = '#E2483D';
+  } else if (sugarPct < 7) {
+    statusEl.textContent = 'near floor'; statusEl.className = 'gstatus warn';
+    document.getElementById('redSugarFill').style.background = '#FF8A3D';
+  } else {
+    statusEl.textContent = 'well above floor'; statusEl.className = 'gstatus ok';
+    document.getElementById('redSugarFill').style.background = '#FF5470';
+  }
+}
+
+document.getElementById('redBatch').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value);
+  document.getElementById('redBatchVal').textContent = v;
+  renderRed(v);
+});
+renderRed(36);
+</script>
+
+</body>
+</html>
