@@ -20,6 +20,7 @@
     --margarita: #C8E62B;
     --painkiller: #FFB830;
     --bluehawaiian: #38C4E8;
+    --bluerasp: #6B5CF6;
     --danger: #E2483D;
     --line: #2A3A3D;
   }
@@ -159,6 +160,7 @@
   .dash-row[data-accent="margarita"] .dash-tag { color: var(--margarita); }
   .dash-row[data-accent="painkiller"] .dash-tag { color: var(--painkiller); }
   .dash-row[data-accent="bluehawaiian"] .dash-tag { color: var(--bluehawaiian); }
+  .dash-row[data-accent="bluerasp"] .dash-tag { color: var(--bluerasp); }
 
   .dash-name {
     font-family: 'Space Grotesk', sans-serif;
@@ -199,6 +201,7 @@
   .dash-row[data-accent="margarita"] .mfill { background: var(--margarita); }
   .dash-row[data-accent="painkiller"] .mfill { background: var(--painkiller); }
   .dash-row[data-accent="bluehawaiian"] .mfill { background: var(--bluehawaiian); }
+  .dash-row[data-accent="bluerasp"] .mfill { background: var(--bluerasp); }
 
   .dash-arrow {
     font-family: 'IBM Plex Mono', monospace;
@@ -233,6 +236,7 @@
   .card[data-mode="margarita"] .card-head { background: linear-gradient(180deg, rgba(200,230,43,0.10), transparent); }
   .card[data-mode="painkiller"] .card-head { background: linear-gradient(180deg, rgba(255,184,48,0.10), transparent); }
   .card[data-mode="bluehawaiian"] .card-head { background: linear-gradient(180deg, rgba(56,196,232,0.10), transparent); }
+  .card[data-mode="bluerasp"] .card-head { background: linear-gradient(180deg, rgba(107,92,246,0.10), transparent); }
 
   .tag {
     display: inline-flex;
@@ -253,6 +257,7 @@
   .card[data-mode="margarita"] .tag { background: rgba(200,230,43,0.15); color: var(--margarita); }
   .card[data-mode="painkiller"] .tag { background: rgba(255,184,48,0.15); color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] .tag { background: rgba(56,196,232,0.15); color: var(--bluehawaiian); }
+  .card[data-mode="bluerasp"] .tag { background: rgba(107,92,246,0.15); color: var(--bluerasp); }
 
   .card-head h2 {
     font-family: 'Space Grotesk', sans-serif;
@@ -419,6 +424,7 @@
   .card[data-mode="margarita"] .ing-amt { color: var(--margarita); }
   .card[data-mode="painkiller"] .ing-amt { color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] .ing-amt { color: var(--bluehawaiian); }
+  .card[data-mode="bluerasp"] .ing-amt { color: var(--bluerasp); }
 
   .steps {
     list-style: none; margin: 0; padding: 0;
@@ -449,6 +455,7 @@
   .card[data-mode="margarita"] .steps li::before { background: rgba(200,230,43,0.15); color: var(--margarita); }
   .card[data-mode="painkiller"] .steps li::before { background: rgba(255,184,48,0.15); color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] .steps li::before { background: rgba(56,196,232,0.15); color: var(--bluehawaiian); }
+  .card[data-mode="bluerasp"] .steps li::before { background: rgba(107,92,246,0.15); color: var(--bluerasp); }
 
   .steps li b { color: var(--text); font-weight: 600; }
 
@@ -478,10 +485,12 @@
   .card[data-mode="margarita"] .footer-flag { background: rgba(200,230,43,0.08); color: var(--margarita); }
   .card[data-mode="painkiller"] .footer-flag { background: rgba(255,184,48,0.08); color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] .footer-flag { background: rgba(56,196,232,0.08); color: var(--bluehawaiian); }
+  .card[data-mode="bluerasp"] .footer-flag { background: rgba(107,92,246,0.08); color: var(--bluerasp); }
 
   .card[data-mode="margarita"] input[type="range"] { accent-color: var(--margarita); }
   .card[data-mode="painkiller"] input[type="range"] { accent-color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] input[type="range"] { accent-color: var(--bluehawaiian); }
+  .card[data-mode="bluerasp"] input[type="range"] { accent-color: var(--bluerasp); }
 
   /* ---------- DRUNK-O-METER ---------- */
   .drunkometer {
@@ -587,6 +596,7 @@
     <a href="#margarita">Margarita</a>
     <a href="#painkiller">Painkiller</a>
     <a href="#bluehawaiian">Blue Hawaiian</a>
+    <a href="#bluerasp">Blue Raspberry</a>
     <a href="#pina-colada">Piña Colada</a>
     <a href="#red">Red Slushie</a>
   </nav>
@@ -594,7 +604,7 @@
 
 <div class="hero">
   <div class="eyebrow">Recipe instruments · slushi machine</div>
-  <h1>Seven batches. Built like formulas, not just lists.</h1>
+  <h1>Eight batches. Built like formulas, not just lists.</h1>
   <p>Every recipe scales by batch size, with the actual constraint — ABV or sugar floor — tracked live. Tap a row to jump to the full card.</p>
 </div>
 
@@ -655,6 +665,18 @@
     <div class="dash-metric">
       <span class="mnum">9.2% ABV</span>
       <div class="mtrack"><div class="mfill" style="width: 57%;"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+
+  <a class="dash-row" data-accent="bluerasp" href="#bluerasp">
+    <div class="dash-name-block">
+      <span class="dash-tag">Alcohol-free · slush</span>
+      <span class="dash-name">Blue Raspberry Lemonade</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">~22% sugar</span>
+      <div class="mtrack"><div class="mfill" style="width: 80%;"></div></div>
     </div>
     <span class="dash-arrow">→</span>
   </a>
@@ -1041,6 +1063,72 @@
     </div>
 
     <div class="footer-flag">⚠ Cream of coconut is dense — whisk immediately before loading or it settles and affects freeze behavior.</div>
+  </div>
+</div>
+
+<!-- ============ BLUE RASPBERRY LEMONADE CARD ============ -->
+<div class="recipe-section" id="bluerasp">
+  <div class="card" data-mode="bluerasp">
+    <div class="card-head">
+      <span class="tag">Alcohol-free · slush preset</span>
+      <h2>Blue Raspberry Lemonade</h2>
+      <p class="sub">Distinct flavor lane from the piña colada and cran-apple cards. Tart lemonade base with blue raspberry syrup. Use standard SLUSH, not SPIKED SLUSH.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="brBatch">Batch size</label>
+      <input type="range" id="brBatch" min="16" max="72" step="1" value="72">
+      <span class="batch-readout"><span id="brBatchVal">72</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="gauge-readout">
+        <div class="gnum" id="brSugarNum">22.2%</div>
+        <div class="glabel">Sugar contribution — floor is ~4%</div>
+        <span class="gstatus ok" id="brSugarStatus">well above floor</span>
+      </div>
+    </div>
+
+    <div class="drunkometer">
+      <h3>Sugar Rush-O-Meter™</h3>
+      <div class="dom-bar" id="brSugarBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Barely Sweet</span><span>Circus Mode</span><span>God Help You</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="brSugarEmoji">😐</div>
+        <div class="dom-text" id="brSugarMeterText"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="brIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Mix.</b> Combine lemonade, blue raspberry syrup, and cold water in a pitcher. Stir well until fully combined.</li>
+        <li><b>Chill.</b> Refrigerate at least 30 minutes before loading.</li>
+        <li><b>Load the machine.</b> Pour through the easy-fill port. Lock bail handle, confirm vessel is sealed.</li>
+        <li><b>Select SLUSH preset.</b> Power on, select SLUSH — not SPIKED SLUSH. No alcohol means no freeze-point depression from that source.</li>
+        <li><b>Run cycle.</b> Typical 15–30 min. The high sugar content from the syrup means this may freeze faster than juice-based kids drinks — check at 15 min.</li>
+        <li><b>Serve.</b> Remove cup lid before dispensing. Garnish with a lemon wheel. The color is striking — clear cups show it best.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Syrup options:</b> bottled blue raspberry syrup (Torani, Monin) or blue Hawaiian Punch concentrate both work. Concentrate is sweeter — reduce by 2 oz and add 2 oz water if using concentrate.</li>
+        <li><b>Sugar floor:</b> the syrup alone clears the 4% minimum by a wide margin — no added simple syrup needed.</li>
+        <li><b>Color:</b> the blue comes from the raspberry syrup. Clear cups show the color best. Add a lemon wheel garnish for contrast.</li>
+        <li><b>Texture risk:</b> high sugar content can make this freeze faster and harder than expected — check early and dispense before it over-firms.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ High sugar content — check at 15 min and don't let it sit too long or it will over-firm. Dispense as soon as it beeps.</div>
   </div>
 </div>
 
@@ -1478,6 +1566,51 @@ document.getElementById('bhBatch').addEventListener('input', (e) => {
   renderBH(v);
 });
 renderBH(72);
+
+// ---- BLUE RASPBERRY LEMONADE CARD ----
+const brBase = 72;
+const brIngredientsBase = [
+  { name: "Lemonade", amt: 44, unit: "fl oz", sugar: 0.10 },
+  { name: "Blue raspberry syrup (or Hawaiian Punch concentrate)", amt: 14, unit: "fl oz", sugar: 0.85 },
+  { name: "Cold water", amt: 14, unit: "fl oz", sugar: 0 },
+];
+
+function renderBR(batch) {
+  const scale = batch / brBase;
+  const list = document.getElementById('brIngredients');
+  list.innerHTML = '';
+  let totalSugar = 0;
+  brIngredientsBase.forEach(ing => {
+    const scaled = ing.amt * scale;
+    totalSugar += scaled * ing.sugar;
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="ing-name">${ing.name}</span><span class="ing-amt">${fmt(scaled, 1)} ${ing.unit}</span>`;
+    list.appendChild(li);
+  });
+  const garnish = document.createElement('li');
+  garnish.innerHTML = `<span class="ing-name">Lemon wheels</span><span class="ing-amt">garnish</span>`;
+  list.appendChild(garnish);
+
+  const sugarPct = (totalSugar / batch) * 100;
+  document.getElementById('brSugarNum').textContent = fmt(sugarPct, 1) + '%';
+
+  const statusEl = document.getElementById('brSugarStatus');
+  if (sugarPct < 4) {
+    statusEl.textContent = 'below floor'; statusEl.className = 'gstatus bad';
+  } else if (sugarPct < 7) {
+    statusEl.textContent = 'near floor'; statusEl.className = 'gstatus warn';
+  } else {
+    statusEl.textContent = 'well above floor'; statusEl.className = 'gstatus ok';
+  }
+  updateSugarMeter('br', sugarPct);
+}
+
+document.getElementById('brBatch').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value);
+  document.getElementById('brBatchVal').textContent = v;
+  renderBR(v);
+});
+renderBR(72);
 
 // ---- KIDS PINA COLADA CARD ----
 const kidsBase = 72;
