@@ -19,6 +19,7 @@
     --red: #FF5470;
     --margarita: #C8E62B;
     --painkiller: #FFB830;
+    --bluehawaiian: #38C4E8;
     --danger: #E2483D;
     --line: #2A3A3D;
   }
@@ -157,6 +158,7 @@
   .dash-row[data-accent="red"] .dash-tag { color: var(--red); }
   .dash-row[data-accent="margarita"] .dash-tag { color: var(--margarita); }
   .dash-row[data-accent="painkiller"] .dash-tag { color: var(--painkiller); }
+  .dash-row[data-accent="bluehawaiian"] .dash-tag { color: var(--bluehawaiian); }
 
   .dash-name {
     font-family: 'Space Grotesk', sans-serif;
@@ -196,6 +198,7 @@
   .dash-row[data-accent="red"] .mfill { background: var(--red); }
   .dash-row[data-accent="margarita"] .mfill { background: var(--margarita); }
   .dash-row[data-accent="painkiller"] .mfill { background: var(--painkiller); }
+  .dash-row[data-accent="bluehawaiian"] .mfill { background: var(--bluehawaiian); }
 
   .dash-arrow {
     font-family: 'IBM Plex Mono', monospace;
@@ -229,6 +232,7 @@
   .card[data-mode="red"] .card-head { background: linear-gradient(180deg, rgba(255,84,112,0.10), transparent); }
   .card[data-mode="margarita"] .card-head { background: linear-gradient(180deg, rgba(200,230,43,0.10), transparent); }
   .card[data-mode="painkiller"] .card-head { background: linear-gradient(180deg, rgba(255,184,48,0.10), transparent); }
+  .card[data-mode="bluehawaiian"] .card-head { background: linear-gradient(180deg, rgba(56,196,232,0.10), transparent); }
 
   .tag {
     display: inline-flex;
@@ -248,6 +252,7 @@
   .card[data-mode="red"] .tag { background: rgba(255,84,112,0.15); color: var(--red); }
   .card[data-mode="margarita"] .tag { background: rgba(200,230,43,0.15); color: var(--margarita); }
   .card[data-mode="painkiller"] .tag { background: rgba(255,184,48,0.15); color: var(--painkiller); }
+  .card[data-mode="bluehawaiian"] .tag { background: rgba(56,196,232,0.15); color: var(--bluehawaiian); }
 
   .card-head h2 {
     font-family: 'Space Grotesk', sans-serif;
@@ -413,6 +418,7 @@
   .card[data-mode="red"] .ing-amt { color: var(--red); }
   .card[data-mode="margarita"] .ing-amt { color: var(--margarita); }
   .card[data-mode="painkiller"] .ing-amt { color: var(--painkiller); }
+  .card[data-mode="bluehawaiian"] .ing-amt { color: var(--bluehawaiian); }
 
   .steps {
     list-style: none; margin: 0; padding: 0;
@@ -442,6 +448,7 @@
   .card[data-mode="red"] .steps li::before { background: rgba(255,84,112,0.15); color: var(--red); }
   .card[data-mode="margarita"] .steps li::before { background: rgba(200,230,43,0.15); color: var(--margarita); }
   .card[data-mode="painkiller"] .steps li::before { background: rgba(255,184,48,0.15); color: var(--painkiller); }
+  .card[data-mode="bluehawaiian"] .steps li::before { background: rgba(56,196,232,0.15); color: var(--bluehawaiian); }
 
   .steps li b { color: var(--text); font-weight: 600; }
 
@@ -470,9 +477,11 @@
   .card[data-mode="red"] .footer-flag { background: rgba(255,84,112,0.08); color: var(--red); }
   .card[data-mode="margarita"] .footer-flag { background: rgba(200,230,43,0.08); color: var(--margarita); }
   .card[data-mode="painkiller"] .footer-flag { background: rgba(255,184,48,0.08); color: var(--painkiller); }
+  .card[data-mode="bluehawaiian"] .footer-flag { background: rgba(56,196,232,0.08); color: var(--bluehawaiian); }
 
   .card[data-mode="margarita"] input[type="range"] { accent-color: var(--margarita); }
   .card[data-mode="painkiller"] input[type="range"] { accent-color: var(--painkiller); }
+  .card[data-mode="bluehawaiian"] input[type="range"] { accent-color: var(--bluehawaiian); }
 
   /* ---------- DRUNK-O-METER ---------- */
   .drunkometer {
@@ -577,6 +586,7 @@
     <a href="#hurricane">Hurricane</a>
     <a href="#margarita">Margarita</a>
     <a href="#painkiller">Painkiller</a>
+    <a href="#bluehawaiian">Blue Hawaiian</a>
     <a href="#pina-colada">Piña Colada</a>
     <a href="#red">Red Slushie</a>
   </nav>
@@ -584,7 +594,7 @@
 
 <div class="hero">
   <div class="eyebrow">Recipe instruments · slushi machine</div>
-  <h1>Six batches. Built like formulas, not just lists.</h1>
+  <h1>Seven batches. Built like formulas, not just lists.</h1>
   <p>Every recipe scales by batch size, with the actual constraint — ABV or sugar floor — tracked live. Tap a row to jump to the full card.</p>
 </div>
 
@@ -633,6 +643,18 @@
     <div class="dash-metric">
       <span class="mnum">8.9% ABV</span>
       <div class="mtrack"><div class="mfill" style="width: 56%;"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+
+  <a class="dash-row" data-accent="bluehawaiian" href="#bluehawaiian">
+    <div class="dash-name-block">
+      <span class="dash-tag">21+ · spiked slush</span>
+      <span class="dash-name">Blue Hawaiian</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">9.2% ABV</span>
+      <div class="mtrack"><div class="mfill" style="width: 57%;"></div></div>
     </div>
     <span class="dash-arrow">→</span>
   </a>
@@ -947,6 +969,78 @@
     </div>
 
     <div class="footer-flag">⚠ Cream of coconut is thicker than juice — whisk immediately before loading or it will settle and affect freeze behavior.</div>
+  </div>
+</div>
+
+<!-- ============ BLUE HAWAIIAN CARD ============ -->
+<div class="recipe-section" id="bluehawaiian">
+  <div class="card" data-mode="bluehawaiian">
+    <div class="card-head">
+      <span class="tag">21+ · spiked slush</span>
+      <h2>Blue Hawaiian</h2>
+      <p class="sub">Higher-ABV build — rum pushed toward the 12 oz hard-spirit ceiling, Curaçao increased to match. Cream of coconut handles the sugar floor. SPIKED SLUSH preset.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="bhBatch">Batch size</label>
+      <input type="range" id="bhBatch" min="16" max="72" step="1" value="72">
+      <span class="batch-readout"><span id="bhBatchVal">72</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="gauge-wrap">
+        <svg width="100" height="64" viewBox="0 0 100 64">
+          <path d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#2A3A3D" stroke-width="8" stroke-linecap="round"/>
+          <path id="bhAbvArc" d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#38C4E8" stroke-width="8" stroke-linecap="round" stroke-dasharray="132 132" stroke-dashoffset="0"/>
+        </svg>
+      </div>
+      <div class="gauge-readout">
+        <div class="gnum" id="bhAbvNum">9.2%</div>
+        <div class="glabel">Final ABV — safe window 2.8%–16%</div>
+        <span class="gstatus ok" id="bhAbvStatus">within range</span>
+      </div>
+    </div>
+
+    <div class="drunkometer">
+      <h3>Drunk-O-Meter™</h3>
+      <div class="dom-bar" id="bhDomBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Basically Juice</span><span>Spicy</span><span>Send Help</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="bhDomEmoji">🧃</div>
+        <div class="dom-text" id="bhDomText"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="bhIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Mix and whisk.</b> Combine rum, Curaçao, pineapple juice, cream of coconut, and water in a large pitcher. Whisk thoroughly — cream of coconut is dense and settles fast. Total = 72 oz.</li>
+        <li><b>Chill the base.</b> Refrigerate at least 30 minutes. Whisk again right before loading.</li>
+        <li><b>Load the machine.</b> Whisk one more time, then pour through the easy-fill port to the max fill line. Lock bail handle, confirm vessel is sealed.</li>
+        <li><b>Select SPIKED SLUSH.</b> Power on, select SPIKED SLUSH — not the generic Slush preset.</li>
+        <li><b>Run cycle.</b> Typical 15–60 min. Check at 30 min — cream of coconut can thicken texture faster than expected.</li>
+        <li><b>Serve.</b> Remove cup lid before dispensing. Garnish with pineapple wedges or maraschino cherries. The blue color is striking — clear cups show it best.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Blue Curaçao ABV:</b> DeKuyper is 15% ABV — lower than rum, so it contributes flavor and color without spiking the ABV as aggressively. Both spirits scaled together to stay under the 16% ceiling.</li>
+        <li><b>Cream of coconut handles sugar:</b> Coco López clears the 4% minimum with room to spare — no added syrup needed.</li>
+        <li><b>Color:</b> the blue comes entirely from the Curaçao — no food dye needed. Lighter pours will be sky blue; full batch is deep tropical blue.</li>
+        <li><b>Whisk before loading:</b> cream of coconut separates. Whisk thoroughly right before pouring into the fill port.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ Cream of coconut is dense — whisk immediately before loading or it settles and affects freeze behavior.</div>
   </div>
 </div>
 
@@ -1330,6 +1424,60 @@ document.getElementById('pkBatch').addEventListener('input', (e) => {
   renderPK(v);
 });
 renderPK(72);
+
+// ---- BLUE HAWAIIAN CARD ----
+const bhBase = 72;
+const bhIngredientsBase = [
+  { name: "White/light rum (40% ABV)", amt: 12, unit: "fl oz", abv: 0.40 },
+  { name: "DeKuyper Blue Curaçao (15% ABV)", amt: 12, unit: "fl oz", abv: 0.15 },
+  { name: "Pineapple juice", amt: 30, unit: "fl oz", abv: 0 },
+  { name: "Cream of coconut (Coco López)", amt: 12, unit: "fl oz", abv: 0 },
+  { name: "Cold water", amt: 6, unit: "fl oz", abv: 0 },
+];
+
+function renderBH(batch) {
+  const scale = batch / bhBase;
+  const list = document.getElementById('bhIngredients');
+  list.innerHTML = '';
+  let totalAlcohol = 0;
+  bhIngredientsBase.forEach(ing => {
+    const scaled = ing.amt * scale;
+    totalAlcohol += scaled * ing.abv;
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="ing-name">${ing.name}</span><span class="ing-amt">${fmt(scaled, 1)} ${ing.unit}</span>`;
+    list.appendChild(li);
+  });
+  const garnish = document.createElement('li');
+  garnish.innerHTML = `<span class="ing-name">Pineapple wedges or maraschino cherries</span><span class="ing-amt">garnish</span>`;
+  list.appendChild(garnish);
+
+  const finalABV = (totalAlcohol / batch) * 100;
+  document.getElementById('bhAbvNum').textContent = fmt(finalABV, 1) + '%';
+
+  const arc = document.getElementById('bhAbvArc');
+  const pct = Math.min(Math.max(finalABV / 16, 0), 1);
+  arc.setAttribute('stroke-dashoffset', 132 * (1 - pct));
+
+  const statusEl = document.getElementById('bhAbvStatus');
+  if (finalABV < 2.8) {
+    statusEl.textContent = 'below minimum'; statusEl.className = 'gstatus warn';
+    arc.setAttribute('stroke', '#FF8A3D');
+  } else if (finalABV > 16) {
+    statusEl.textContent = 'over limit'; statusEl.className = 'gstatus bad';
+    arc.setAttribute('stroke', '#E2483D');
+  } else {
+    statusEl.textContent = 'within range'; statusEl.className = 'gstatus ok';
+    arc.setAttribute('stroke', '#38C4E8');
+  }
+  updateDrunkometer('bh', finalABV);
+}
+
+document.getElementById('bhBatch').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value);
+  document.getElementById('bhBatchVal').textContent = v;
+  renderBH(v);
+});
+renderBH(72);
 
 // ---- KIDS PINA COLADA CARD ----
 const kidsBase = 72;
