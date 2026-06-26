@@ -1268,11 +1268,11 @@
 
 <script>
 const SUGAR_LEVELS = [
-  { max: 5,  segs: 1, emoji: "😐", title: "Basically Water", text: "Mom's going to ask why they aren't finishing it." },
-  { max: 8,  segs: 2, emoji: "🍬", title: "Snack Energy", text: "They'll be fine. Probably. Watch them just in case." },
-  { max: 11, segs: 3, emoji: "🎪", title: "Circus Mode", text: "Someone's getting a timeout tonight and it's not you. Maybe." },
-  { max: 14, segs: 4, emoji: "🚀", title: "Wall Climbing", text: "They have found the ceiling. They are ON the ceiling. Good luck." },
-  { max: 25, segs: 5, emoji: "💥", title: "God Help You", text: "This is not your problem anymore. This is their teacher's problem." },
+  { max: 6,  segs: 1, emoji: "😐", title: "Basically Water", text: "Mom's going to ask why they aren't finishing it." },
+  { max: 11, segs: 2, emoji: "🍬", title: "Snack Energy", text: "They'll be fine. Probably. Watch them just in case." },
+  { max: 15, segs: 3, emoji: "🎪", title: "Circus Mode", text: "Someone's getting a timeout tonight and it's not you. Maybe." },
+  { max: 20, segs: 4, emoji: "🚀", title: "Wall Climbing", text: "They have found the ceiling. They are ON the ceiling. Good luck." },
+  { max: 30, segs: 5, emoji: "💥", title: "God Help You", text: "This is not your problem anymore. This is their teacher's problem." },
 ];
 
 function updateSugarMeter(prefix, sugarPct) {
@@ -1571,7 +1571,7 @@ renderBH(72);
 const brBase = 72;
 const brIngredientsBase = [
   { name: "Lemonade", amt: 44, unit: "fl oz", sugar: 0.10 },
-  { name: "Blue raspberry syrup (or Hawaiian Punch concentrate)", amt: 14, unit: "fl oz", sugar: 0.85 },
+  { name: "Blue raspberry syrup (or Hawaiian Punch concentrate)", amt: 14, unit: "fl oz", sugar: 0.65 },
   { name: "Cold water", amt: 14, unit: "fl oz", sugar: 0 },
 ];
 
@@ -1620,7 +1620,7 @@ const kidsIngredientsBase = [
   { name: "Simple syrup", amt: 8, unit: "fl oz" },
   { name: "Cold water", amt: 8, unit: "fl oz" },
 ];
-const kidsSugarPerOz = { "Pineapple juice (100%)": 0.13, "Coconut cream (unsweetened)": 0.06, "Simple syrup": 1.0, "Cold water": 0 };
+const kidsSugarPerOz = { "Pineapple juice (100%)": 0.13, "Coconut cream (unsweetened)": 0.06, "Simple syrup": 0.5, "Cold water": 0 };
 
 function renderKids(batch) {
   const scale = batch / kidsBase;
@@ -1665,7 +1665,7 @@ const redIngredientsBase = [
   { name: "Fresh lime juice (~2 limes per 36 oz)", amt: 2, unit: "fl oz" },
   { name: "Cold water", amt: 2, unit: "fl oz" },
 ];
-const redSugarPerOz = { "Cran-apple juice": 0.14, "Grenadine": 0.55, "Simple syrup": 1.0, "Fresh lime juice (~2 limes per 36 oz)": 0.02, "Cold water": 0 };
+const redSugarPerOz = { "Cran-apple juice": 0.14, "Grenadine": 0.55, "Simple syrup": 0.5, "Fresh lime juice (~2 limes per 36 oz)": 0.02, "Cold water": 0 };
 
 function renderRed(batch) {
   const scale = batch / redBase;
