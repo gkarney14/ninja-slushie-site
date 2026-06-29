@@ -605,10 +605,10 @@
     <a href="#margarita">Margarita</a>
     <a href="#painkiller">Painkiller</a>
     <a href="#bluehawaiian">Blue Hawaiian</a>
+    <a href="#espresso">Espresso Martini</a>
     <a href="#bluerasp">Blue Raspberry</a>
     <a href="#pina-colada">Piña Colada</a>
     <a href="#red">Red Slushie</a>
-    <a href="#espresso">Espresso Martini</a>
   </nav>
 </div>
 
@@ -679,6 +679,18 @@
     <span class="dash-arrow">→</span>
   </a>
 
+  <a class="dash-row" data-accent="espresso" href="#espresso">
+    <div class="dash-name-block">
+      <span class="dash-tag">21+ · spiked slush</span>
+      <span class="dash-name">Frozen Espresso Martini</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">11.7% ABV</span>
+      <div class="mtrack"><div class="mfill" style="width: 73%;"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+
   <a class="dash-row" data-accent="bluerasp" href="#bluerasp">
     <div class="dash-name-block">
       <span class="dash-tag">Alcohol-free · slush</span>
@@ -711,18 +723,6 @@
     <div class="dash-metric">
       <span class="mnum">10.0% sugar</span>
       <div class="mtrack"><div class="mfill" style="width: 50%; background: var(--red);"></div></div>
-    </div>
-    <span class="dash-arrow">→</span>
-  </a>
-
-  <a class="dash-row" data-accent="espresso" href="#espresso">
-    <div class="dash-name-block">
-      <span class="dash-tag">21+ · spiked slush</span>
-      <span class="dash-name">Frozen Espresso Martini</span>
-    </div>
-    <div class="dash-metric">
-      <span class="mnum">11.7% ABV</span>
-      <div class="mtrack"><div class="mfill" style="width: 73%;"></div></div>
     </div>
     <span class="dash-arrow">→</span>
   </a>
@@ -1088,6 +1088,79 @@
   </div>
 </div>
 
+<!-- ============ FROZEN ESPRESSO MARTINI CARD ============ -->
+<div class="recipe-section" id="espresso">
+  <div class="card" data-mode="espresso">
+    <div class="card-head">
+      <span class="tag">21+ · spiked slush</span>
+      <h2>Frozen Espresso Martini</h2>
+      <p class="sub">Cold brew base with vodka, Bailey's, and Kahlúa. Creamy, coffee-forward, and firmly in Texting Exes territory. SPIKED SLUSH preset.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="emBatch">Batch size</label>
+      <input type="range" id="emBatch" min="16" max="72" step="1" value="72">
+      <span class="batch-readout"><span id="emBatchVal">72</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="gauge-wrap">
+        <svg width="100" height="64" viewBox="0 0 100 64">
+          <path d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#2A3A3D" stroke-width="8" stroke-linecap="round"/>
+          <path id="emAbvArc" d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#C47A2B" stroke-width="8" stroke-linecap="round" stroke-dasharray="132 132" stroke-dashoffset="0"/>
+        </svg>
+      </div>
+      <div class="gauge-readout">
+        <div class="gnum" id="emAbvNum">11.7%</div>
+        <div class="glabel">Final ABV — safe window 2.8%–16%</div>
+        <span class="gstatus ok" id="emAbvStatus">within range</span>
+      </div>
+    </div>
+
+    <div class="drunkometer">
+      <h3>Drunk-O-Meter™</h3>
+      <div class="dom-bar" id="emDomBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Basically Juice</span><span>Spicy</span><span>Send Help</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="emDomEmoji">🧃</div>
+        <div class="dom-text" id="emDomText"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="emIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Combine and whisk.</b> Add vodka, Bailey's, Kahlúa, cold brew concentrate, simple syrup, half & half, and cold water to a large pitcher. Whisk until fully combined — Bailey's and half & half need real mixing to incorporate evenly.</li>
+        <li><b>Chill the base.</b> Refrigerate at least 30 minutes before loading. Cold brew and dairy need to start cold or the freeze cycle takes significantly longer.</li>
+        <li><b>Taste before loading.</b> Should be rich, coffee-forward, slightly sweet. If it tastes flat, add 1–2 tbsp more simple syrup. If too sweet, a splash more cold brew.</li>
+        <li><b>Load the machine.</b> Whisk once more, then pour through the easy-fill port. Lock bail handle, confirm vessel is sealed.</li>
+        <li><b>Select SPIKED SLUSH.</b> The dairy content means this may take slightly longer to fully freeze than a juice-based batch — check at 35 minutes.</li>
+        <li><b>Serve.</b> Remove cup lid before dispensing. Optionally garnish with 3 espresso beans on top — the classic espresso martini finish.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Cold brew, not hot espresso:</b> hot espresso added at volume will raise the base temperature and fight the freeze cycle. Cold brew concentrate gives you the same intense coffee hit without the heat — use a 1:4 or 1:5 concentrate-to-water ratio if making your own.</li>
+        <li><b>Why Kahlúa:</b> the standard third ingredient in any espresso martini. It adds sweetness, depth, and extra coffee flavor that vodka and Bailey's alone can't replicate. Don't skip it.</li>
+        <li><b>Bailey's ABV matters:</b> at 17% ABV, Bailey's contributes meaningful alcohol without spiking like straight spirits — it's doing double duty as both cream liqueur and ABV contribution.</li>
+        <li><b>Half & half vs heavy cream:</b> half & half gives a lighter, smoother texture in the machine. Heavy cream can over-thicken and slow the freeze — stick with half & half unless you want a denser, milkshake-style result.</li>
+        <li><b>Want it stronger?</b> Push vodka to 16 oz — ABV moves to 13.5%, still inside the 16% ceiling and hits Send Help level on the meter.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ Dairy base — whisk immediately before loading and don't let the mixed batch sit unrefrigerated. Dispense as soon as the cycle completes; dairy slush over-firms faster than juice builds.</div>
+  </div>
+</div>
+
 <!-- ============ BLUE RASPBERRY LEMONADE CARD ============ -->
 <div class="recipe-section" id="bluerasp">
   <div class="card" data-mode="bluerasp">
@@ -1281,79 +1354,6 @@
     </div>
 
     <div class="footer-flag">⚠ Thinner base than the piña colada card — don't reuse its timing assumptions. Check your machine's minimum fill line at smaller batch sizes.</div>
-  </div>
-</div>
-
-<!-- ============ FROZEN ESPRESSO MARTINI CARD ============ -->
-<div class="recipe-section" id="espresso">
-  <div class="card" data-mode="espresso">
-    <div class="card-head">
-      <span class="tag">21+ · spiked slush</span>
-      <h2>Frozen Espresso Martini</h2>
-      <p class="sub">Cold brew base with vodka, Bailey's, and Kahlúa. Creamy, coffee-forward, and firmly in Texting Exes territory. SPIKED SLUSH preset.</p>
-    </div>
-
-    <div class="scale-row">
-      <label for="emBatch">Batch size</label>
-      <input type="range" id="emBatch" min="16" max="72" step="1" value="72">
-      <span class="batch-readout"><span id="emBatchVal">72</span> oz</span>
-    </div>
-
-    <div class="gauge-row">
-      <div class="gauge-wrap">
-        <svg width="100" height="64" viewBox="0 0 100 64">
-          <path d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#2A3A3D" stroke-width="8" stroke-linecap="round"/>
-          <path id="emAbvArc" d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#C47A2B" stroke-width="8" stroke-linecap="round" stroke-dasharray="132 132" stroke-dashoffset="0"/>
-        </svg>
-      </div>
-      <div class="gauge-readout">
-        <div class="gnum" id="emAbvNum">11.7%</div>
-        <div class="glabel">Final ABV — safe window 2.8%–16%</div>
-        <span class="gstatus ok" id="emAbvStatus">within range</span>
-      </div>
-    </div>
-
-    <div class="drunkometer">
-      <h3>Drunk-O-Meter™</h3>
-      <div class="dom-bar" id="emDomBar">
-        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
-      </div>
-      <div class="dom-labels"><span>Basically Juice</span><span>Spicy</span><span>Send Help</span></div>
-      <div class="dom-verdict">
-        <div class="dom-emoji" id="emDomEmoji">🧃</div>
-        <div class="dom-text" id="emDomText"></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h3>Ingredients</h3>
-      <ul class="ing-list" id="emIngredients"></ul>
-    </div>
-
-    <div class="section">
-      <h3>Steps</h3>
-      <ol class="steps">
-        <li><b>Combine and whisk.</b> Add vodka, Bailey's, Kahlúa, cold brew concentrate, simple syrup, half & half, and cold water to a large pitcher. Whisk until fully combined — Bailey's and half & half need real mixing to incorporate evenly.</li>
-        <li><b>Chill the base.</b> Refrigerate at least 30 minutes before loading. Cold brew and dairy need to start cold or the freeze cycle takes significantly longer.</li>
-        <li><b>Taste before loading.</b> Should be rich, coffee-forward, slightly sweet. If it tastes flat, add 1–2 tbsp more simple syrup. If too sweet, a splash more cold brew.</li>
-        <li><b>Load the machine.</b> Whisk once more, then pour through the easy-fill port. Lock bail handle, confirm vessel is sealed.</li>
-        <li><b>Select SPIKED SLUSH.</b> The dairy content means this may take slightly longer to fully freeze than a juice-based batch — check at 35 minutes.</li>
-        <li><b>Serve.</b> Remove cup lid before dispensing. Optionally garnish with 3 espresso beans on top — the classic espresso martini finish.</li>
-      </ol>
-    </div>
-
-    <div class="section">
-      <h3>Notes</h3>
-      <ul class="notes-list">
-        <li><b>Cold brew, not hot espresso:</b> hot espresso added at volume will raise the base temperature and fight the freeze cycle. Cold brew concentrate gives you the same intense coffee hit without the heat — use a 1:4 or 1:5 concentrate-to-water ratio if making your own.</li>
-        <li><b>Why Kahlúa:</b> the standard third ingredient in any espresso martini. It adds sweetness, depth, and extra coffee flavor that vodka and Bailey's alone can't replicate. Don't skip it.</li>
-        <li><b>Bailey's ABV matters:</b> at 17% ABV, Bailey's contributes meaningful alcohol without spiking like straight spirits — it's doing double duty as both cream liqueur and ABV contribution.</li>
-        <li><b>Half & half vs heavy cream:</b> half & half gives a lighter, smoother texture in the machine. Heavy cream can over-thicken and slow the freeze — stick with half & half unless you want a denser, milkshake-style result.</li>
-        <li><b>Want it stronger?</b> Push vodka to 16 oz — ABV moves to 13.5%, still inside the 16% ceiling and hits Send Help level on the meter.</li>
-      </ul>
-    </div>
-
-    <div class="footer-flag">⚠ Dairy base — whisk immediately before loading and don't let the mixed batch sit unrefrigerated. Dispense as soon as the cycle completes; dairy slush over-firms faster than juice builds.</div>
   </div>
 </div>
 
