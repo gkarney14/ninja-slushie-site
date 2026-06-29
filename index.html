@@ -21,6 +21,7 @@
     --painkiller: #FFB830;
     --bluehawaiian: #38C4E8;
     --bluerasp: #6B5CF6;
+    --espresso: #C47A2B;
     --danger: #E2483D;
     --line: #2A3A3D;
   }
@@ -161,6 +162,7 @@
   .dash-row[data-accent="painkiller"] .dash-tag { color: var(--painkiller); }
   .dash-row[data-accent="bluehawaiian"] .dash-tag { color: var(--bluehawaiian); }
   .dash-row[data-accent="bluerasp"] .dash-tag { color: var(--bluerasp); }
+  .dash-row[data-accent="espresso"] .dash-tag { color: var(--espresso); }
 
   .dash-name {
     font-family: 'Space Grotesk', sans-serif;
@@ -202,6 +204,7 @@
   .dash-row[data-accent="painkiller"] .mfill { background: var(--painkiller); }
   .dash-row[data-accent="bluehawaiian"] .mfill { background: var(--bluehawaiian); }
   .dash-row[data-accent="bluerasp"] .mfill { background: var(--bluerasp); }
+  .dash-row[data-accent="espresso"] .mfill { background: var(--espresso); }
 
   .dash-arrow {
     font-family: 'IBM Plex Mono', monospace;
@@ -237,6 +240,7 @@
   .card[data-mode="painkiller"] .card-head { background: linear-gradient(180deg, rgba(255,184,48,0.10), transparent); }
   .card[data-mode="bluehawaiian"] .card-head { background: linear-gradient(180deg, rgba(56,196,232,0.10), transparent); }
   .card[data-mode="bluerasp"] .card-head { background: linear-gradient(180deg, rgba(107,92,246,0.10), transparent); }
+  .card[data-mode="espresso"] .card-head { background: linear-gradient(180deg, rgba(196,122,43,0.10), transparent); }
 
   .tag {
     display: inline-flex;
@@ -258,6 +262,7 @@
   .card[data-mode="painkiller"] .tag { background: rgba(255,184,48,0.15); color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] .tag { background: rgba(56,196,232,0.15); color: var(--bluehawaiian); }
   .card[data-mode="bluerasp"] .tag { background: rgba(107,92,246,0.15); color: var(--bluerasp); }
+  .card[data-mode="espresso"] .tag { background: rgba(196,122,43,0.15); color: var(--espresso); }
 
   .card-head h2 {
     font-family: 'Space Grotesk', sans-serif;
@@ -425,6 +430,7 @@
   .card[data-mode="painkiller"] .ing-amt { color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] .ing-amt { color: var(--bluehawaiian); }
   .card[data-mode="bluerasp"] .ing-amt { color: var(--bluerasp); }
+  .card[data-mode="espresso"] .ing-amt { color: var(--espresso); }
 
   .steps {
     list-style: none; margin: 0; padding: 0;
@@ -456,6 +462,7 @@
   .card[data-mode="painkiller"] .steps li::before { background: rgba(255,184,48,0.15); color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] .steps li::before { background: rgba(56,196,232,0.15); color: var(--bluehawaiian); }
   .card[data-mode="bluerasp"] .steps li::before { background: rgba(107,92,246,0.15); color: var(--bluerasp); }
+  .card[data-mode="espresso"] .steps li::before { background: rgba(196,122,43,0.15); color: var(--espresso); }
 
   .steps li b { color: var(--text); font-weight: 600; }
 
@@ -486,11 +493,13 @@
   .card[data-mode="painkiller"] .footer-flag { background: rgba(255,184,48,0.08); color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] .footer-flag { background: rgba(56,196,232,0.08); color: var(--bluehawaiian); }
   .card[data-mode="bluerasp"] .footer-flag { background: rgba(107,92,246,0.08); color: var(--bluerasp); }
+  .card[data-mode="espresso"] .footer-flag { background: rgba(196,122,43,0.08); color: var(--espresso); }
 
   .card[data-mode="margarita"] input[type="range"] { accent-color: var(--margarita); }
   .card[data-mode="painkiller"] input[type="range"] { accent-color: var(--painkiller); }
   .card[data-mode="bluehawaiian"] input[type="range"] { accent-color: var(--bluehawaiian); }
   .card[data-mode="bluerasp"] input[type="range"] { accent-color: var(--bluerasp); }
+  .card[data-mode="espresso"] input[type="range"] { accent-color: var(--espresso); }
 
   /* ---------- DRUNK-O-METER ---------- */
   .drunkometer {
@@ -599,6 +608,7 @@
     <a href="#bluerasp">Blue Raspberry</a>
     <a href="#pina-colada">Piña Colada</a>
     <a href="#red">Red Slushie</a>
+    <a href="#espresso">Espresso Martini</a>
   </nav>
 </div>
 
@@ -701,6 +711,18 @@
     <div class="dash-metric">
       <span class="mnum">10.0% sugar</span>
       <div class="mtrack"><div class="mfill" style="width: 50%; background: var(--red);"></div></div>
+    </div>
+    <span class="dash-arrow">→</span>
+  </a>
+
+  <a class="dash-row" data-accent="espresso" href="#espresso">
+    <div class="dash-name-block">
+      <span class="dash-tag">21+ · spiked slush</span>
+      <span class="dash-name">Frozen Espresso Martini</span>
+    </div>
+    <div class="dash-metric">
+      <span class="mnum">11.7% ABV</span>
+      <div class="mtrack"><div class="mfill" style="width: 73%;"></div></div>
     </div>
     <span class="dash-arrow">→</span>
   </a>
@@ -1262,6 +1284,79 @@
   </div>
 </div>
 
+<!-- ============ FROZEN ESPRESSO MARTINI CARD ============ -->
+<div class="recipe-section" id="espresso">
+  <div class="card" data-mode="espresso">
+    <div class="card-head">
+      <span class="tag">21+ · spiked slush</span>
+      <h2>Frozen Espresso Martini</h2>
+      <p class="sub">Cold brew base with vodka, Bailey's, and Kahlúa. Creamy, coffee-forward, and firmly in Texting Exes territory. SPIKED SLUSH preset.</p>
+    </div>
+
+    <div class="scale-row">
+      <label for="emBatch">Batch size</label>
+      <input type="range" id="emBatch" min="16" max="72" step="1" value="72">
+      <span class="batch-readout"><span id="emBatchVal">72</span> oz</span>
+    </div>
+
+    <div class="gauge-row">
+      <div class="gauge-wrap">
+        <svg width="100" height="64" viewBox="0 0 100 64">
+          <path d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#2A3A3D" stroke-width="8" stroke-linecap="round"/>
+          <path id="emAbvArc" d="M 8 58 A 42 42 0 0 1 92 58" fill="none" stroke="#C47A2B" stroke-width="8" stroke-linecap="round" stroke-dasharray="132 132" stroke-dashoffset="0"/>
+        </svg>
+      </div>
+      <div class="gauge-readout">
+        <div class="gnum" id="emAbvNum">11.7%</div>
+        <div class="glabel">Final ABV — safe window 2.8%–16%</div>
+        <span class="gstatus ok" id="emAbvStatus">within range</span>
+      </div>
+    </div>
+
+    <div class="drunkometer">
+      <h3>Drunk-O-Meter™</h3>
+      <div class="dom-bar" id="emDomBar">
+        <div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div><div class="dom-seg"></div>
+      </div>
+      <div class="dom-labels"><span>Basically Juice</span><span>Spicy</span><span>Send Help</span></div>
+      <div class="dom-verdict">
+        <div class="dom-emoji" id="emDomEmoji">🧃</div>
+        <div class="dom-text" id="emDomText"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul class="ing-list" id="emIngredients"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li><b>Combine and whisk.</b> Add vodka, Bailey's, Kahlúa, cold brew concentrate, simple syrup, half & half, and cold water to a large pitcher. Whisk until fully combined — Bailey's and half & half need real mixing to incorporate evenly.</li>
+        <li><b>Chill the base.</b> Refrigerate at least 30 minutes before loading. Cold brew and dairy need to start cold or the freeze cycle takes significantly longer.</li>
+        <li><b>Taste before loading.</b> Should be rich, coffee-forward, slightly sweet. If it tastes flat, add 1–2 tbsp more simple syrup. If too sweet, a splash more cold brew.</li>
+        <li><b>Load the machine.</b> Whisk once more, then pour through the easy-fill port. Lock bail handle, confirm vessel is sealed.</li>
+        <li><b>Select SPIKED SLUSH.</b> The dairy content means this may take slightly longer to fully freeze than a juice-based batch — check at 35 minutes.</li>
+        <li><b>Serve.</b> Remove cup lid before dispensing. Optionally garnish with 3 espresso beans on top — the classic espresso martini finish.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>Notes</h3>
+      <ul class="notes-list">
+        <li><b>Cold brew, not hot espresso:</b> hot espresso added at volume will raise the base temperature and fight the freeze cycle. Cold brew concentrate gives you the same intense coffee hit without the heat — use a 1:4 or 1:5 concentrate-to-water ratio if making your own.</li>
+        <li><b>Why Kahlúa:</b> the standard third ingredient in any espresso martini. It adds sweetness, depth, and extra coffee flavor that vodka and Bailey's alone can't replicate. Don't skip it.</li>
+        <li><b>Bailey's ABV matters:</b> at 17% ABV, Bailey's contributes meaningful alcohol without spiking like straight spirits — it's doing double duty as both cream liqueur and ABV contribution.</li>
+        <li><b>Half & half vs heavy cream:</b> half & half gives a lighter, smoother texture in the machine. Heavy cream can over-thicken and slow the freeze — stick with half & half unless you want a denser, milkshake-style result.</li>
+        <li><b>Want it stronger?</b> Push vodka to 16 oz — ABV moves to 13.5%, still inside the 16% ceiling and hits Send Help level on the meter.</li>
+      </ul>
+    </div>
+
+    <div class="footer-flag">⚠ Dairy base — whisk immediately before loading and don't let the mixed batch sit unrefrigerated. Dispense as soon as the cycle completes; dairy slush over-firms faster than juice builds.</div>
+  </div>
+</div>
+
 <div class="site-footer">
   Ninja Slushi Recipes — built for actual batches, not browsing. Numbers update live as you scale.
 </div>
@@ -1701,6 +1796,62 @@ document.getElementById('redBatch').addEventListener('input', (e) => {
   renderRed(v);
 });
 renderRed(36);
+
+// ---- FROZEN ESPRESSO MARTINI CARD ----
+const emBase = 72;
+const emIngredientsBase = [
+  { name: "Vodka (40% ABV)", amt: 12, unit: "fl oz", abv: 0.40 },
+  { name: "Bailey's Irish Cream (17% ABV)", amt: 12, unit: "fl oz", abv: 0.17 },
+  { name: "Kahlúa / coffee liqueur (20% ABV)", amt: 8, unit: "fl oz", abv: 0.20 },
+  { name: "Cold brew concentrate", amt: 16, unit: "fl oz", abv: 0 },
+  { name: "Half & half", amt: 10, unit: "fl oz", abv: 0 },
+  { name: "Simple syrup", amt: 6, unit: "fl oz", abv: 0 },
+  { name: "Cold water", amt: 8, unit: "fl oz", abv: 0 },
+];
+
+function renderEM(batch) {
+  const scale = batch / emBase;
+  const list = document.getElementById('emIngredients');
+  list.innerHTML = '';
+  let totalAlcohol = 0;
+  emIngredientsBase.forEach(ing => {
+    const scaled = ing.amt * scale;
+    totalAlcohol += scaled * ing.abv;
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="ing-name">${ing.name}</span><span class="ing-amt">${fmt(scaled, 1)} ${ing.unit}</span>`;
+    list.appendChild(li);
+  });
+  const garnish = document.createElement('li');
+  garnish.innerHTML = `<span class="ing-name">Espresso beans (garnish)</span><span class="ing-amt">3 per glass</span>`;
+  list.appendChild(garnish);
+
+  const finalABV = (totalAlcohol / batch) * 100;
+  document.getElementById('emAbvNum').textContent = fmt(finalABV, 1) + '%';
+
+  const arc = document.getElementById('emAbvArc');
+  const pct = Math.min(Math.max(finalABV / 16, 0), 1);
+  arc.setAttribute('stroke-dashoffset', 132 * (1 - pct));
+
+  const statusEl = document.getElementById('emAbvStatus');
+  if (finalABV < 2.8) {
+    statusEl.textContent = 'below minimum'; statusEl.className = 'gstatus warn';
+    arc.setAttribute('stroke', '#FF8A3D');
+  } else if (finalABV > 16) {
+    statusEl.textContent = 'over limit'; statusEl.className = 'gstatus bad';
+    arc.setAttribute('stroke', '#E2483D');
+  } else {
+    statusEl.textContent = 'within range'; statusEl.className = 'gstatus ok';
+    arc.setAttribute('stroke', '#C47A2B');
+  }
+  updateDrunkometer('em', finalABV);
+}
+
+document.getElementById('emBatch').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value);
+  document.getElementById('emBatchVal').textContent = v;
+  renderEM(v);
+});
+renderEM(72);
 </script>
 
 </body>
