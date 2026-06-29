@@ -1,25 +1,43 @@
 # Ninja Slushi Recipes
 
-A small site for scalable slushi-machine recipes — four batches, each treated as a working formula rather than a static ingredient list.
+A single-page site with nine scalable slushi-machine recipes — each built as a working formula with live-updating ingredient amounts, ABV or sugar gauges, and a fun meter.
 
-**Live site:** see GitHub Pages URL once deployed (Settings → Pages on this repo).
+**Live site:** https://gkarney14.github.io/ninja-slushie-site/
 
-## What's here
+## Recipes
 
-- **Coconut-Lime Rum** (21+, SPIKED SLUSH) — Malibu-based, live ABV gauge
-- **Hurricane** (21+, SPIKED SLUSH) — classic two-rum tiki build, live ABV gauge
-- **Piña Colada — Kids** (alcohol-free, SLUSH) — live sugar-floor gauge
-- **Red Slushie — Kids** (alcohol-free, SLUSH) — live sugar-floor gauge
+### Spiked (21+ · SPIKED SLUSH preset)
 
-Each card has a batch-size slider. Ingredient amounts rescale proportionally, and the relevant constraint — ABV for the rum drinks, sugar-floor percentage for the kids' drinks — recalculates live so you can see at a glance whether a batch is in a safe/working range before you load the machine.
+| Recipe | ABV | Drunk-O-Meter |
+|---|---|---|
+| Coconut-Lime Rum | 7.0% | Basically Juice |
+| Hurricane | 13.3% | Someone's Problem |
+| Margarita | 12.8% | Someone's Problem |
+| Painkiller — Soggy Dollar | 7.8% | Feeling Yourself |
+| Blue Hawaiian | 9.2% | Dance Floor Threat |
+| Frozen Espresso Martini | 11.7% | Texting Exes |
+
+### Alcohol-Free (SLUSH preset)
+
+| Recipe | Sugar | Sugar Rush-O-Meter |
+|---|---|---|
+| Blue Raspberry Lemonade | ~19% | Wall Climbing |
+| Piña Colada — Kids | 14.1% | Circus Mode |
+| Red Slushie — Kids | 21.4% | God Help You |
+
+## Features
+
+- **Batch-size slider** — 16 oz to 72 oz. Every ingredient amount rescales proportionally.
+- **Live ABV gauge** — SVG arc tracks final ABV against the machine's 2.8%–16% safe window. Status badge flips between within range / below minimum / over limit.
+- **Live sugar gauge** — percentage readout for alcohol-free builds, confirming the mix clears the machine's ~4% sugar floor.
+- **Drunk-O-Meter™** — 5-level color bar with emoji verdict for spiked recipes.
+- **Sugar Rush-O-Meter™** — 5-level color bar with emoji verdict for kids recipes.
 
 ## Structure
 
 Single self-contained `index.html` — no build step, no dependencies beyond Google Fonts (Space Grotesk / Inter / IBM Plex Mono). Deployable as-is via GitHub Pages.
 
 ## Local preview
-
-Just open `index.html` in a browser, or serve it:
 
 ```
 python3 -m http.server 8000
