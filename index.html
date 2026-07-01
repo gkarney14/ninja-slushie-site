@@ -852,7 +852,7 @@
         <li><b>Chill the base.</b> Refrigerate at least 30 minutes before loading.</li>
         <li><b>Load the machine.</b> Pour to your scaled max fill line. Lock the bail handle, confirm the seal.</li>
         <li><b>Select SPIKED SLUSH.</b> At ~12.5% ABV this sits near the top of the safe window — check around the 30-minute mark since exact freeze time depends on your machine and starting temperature.</li>
-        <li><b>Run cycle.</b> Typical cycle 15–45 min. If texture runs thick, press DOWN to drop temperature.</li>
+        <li><b>Run cycle.</b> Typical cycle 15–45 min. If the mix resists freezing and stays too liquid, press UP to run colder. If it goes too thick, press DOWN to warm slightly.</li>
         <li><b>Serve.</b> Garnish with an orange slice and a cherry — the traditional hurricane look.</li>
       </ol>
     </div>
@@ -862,7 +862,7 @@
       <ul class="notes-list">
         <li><b>Why 24 oz total rum works:</b> Bacardi Superior at 40% and Soggy Dollar Island Spiced at 35% average out to 12.5% ABV in the final batch — clear of both the 2.8% floor and 16% ceiling, and firmly in Send Help territory on the Drunk-O-Meter.</li>
         <li><b>Sugar floor:</b> grenadine and simple syrup clear the 4% minimum easily on top of natural juice sugars.</li>
-        <li><b>Dark rum matters:</b> don't substitute a second light rum — dark rum (e.g. Myers's Dark) gives the actual flavor signature and color, not just the grenadine.</li>
+        <li><b>Spiced rum matters:</b> don't substitute a second light rum — Soggy Dollar Island Spiced gives the actual flavor signature and color depth, not just the grenadine.</li>
         <li><b>Variation:</b> shift 4 oz from orange juice to Goya passion fruit cocktail for a more passion-fruit-forward profile — same total volume and ABV.</li>
       </ul>
     </div>
@@ -1455,11 +1455,11 @@ const hurIngredientsBase = [
   { name: "Bacardi Superior white rum (40% ABV)", amt: 12, unit: "fl oz", abv: 0.40 },
   { name: "Soggy Dollar Island Spiced rum (35% ABV)", amt: 12, unit: "fl oz", abv: 0.35 },
   { name: "Goya passion fruit cocktail", amt: 16, unit: "fl oz", abv: 0 },
-  { name: "Orange juice", amt: 12, unit: "fl oz", abv: 0 },
+  { name: "Orange juice", amt: 8, unit: "fl oz", abv: 0 },
   { name: "Fresh lime juice (~5 limes per 72 oz)", amt: 6, unit: "fl oz", abv: 0 },
   { name: "Grenadine", amt: 6, unit: "fl oz", abv: 0 },
   { name: "Simple syrup", amt: 4, unit: "fl oz", abv: 0 },
-  { name: "Cold water", amt: 4, unit: "fl oz", abv: 0 },
+  { name: "Cold water", amt: 8, unit: "fl oz", abv: 0 },
 ];
 
 function renderHur(batch) {
